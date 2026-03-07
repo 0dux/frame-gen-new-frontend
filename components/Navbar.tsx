@@ -32,25 +32,22 @@ export function Navbar() {
           <div className="w-4 h-4 bg-primary-foreground rounded-full opacity-50" />
         </div>
         <span className="font-bold text-xl tracking-tight text-foreground">
-          Craftify
+          Frame Gen
         </span>
       </div>
 
       <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
         <Link href="#" className="hover:text-foreground transition-colors">
-          Start
+          Home
         </Link>
         <Link href="#" className="hover:text-foreground transition-colors">
-          Features
+          Generate
         </Link>
         <Link href="#" className="hover:text-foreground transition-colors">
-          Resources
+          About
         </Link>
         <Link href="#" className="hover:text-foreground transition-colors">
-          Help
-        </Link>
-        <Link href="#" className="hover:text-foreground transition-colors">
-          Pricing
+          Community
         </Link>
       </nav>
 

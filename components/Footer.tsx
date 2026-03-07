@@ -1,6 +1,7 @@
 import { Linkedin01Icon, Mail01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
+import GradientBg from "./GradientBg";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
@@ -9,7 +10,10 @@ export function Footer() {
     <footer className="w-full max-w-7xl mx-auto px-6 py-12 md:py-24">
       {/* Outer rounded card area */}
       <div className="bg-card border border-border rounded-3xl p-8 md:p-16 flex flex-col gap-16 md:gap-24 relative overflow-hidden">
-        {/* Decorative blurry background elements could go here if requested later */}
+        {/* Animated Gradient Background */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
+          <GradientBg />
+        </div>
 
         <div className="flex flex-col md:flex-row justify-between gap-16 z-10 relative">
           {/* Left Column (Headers & Newsletter) */}
