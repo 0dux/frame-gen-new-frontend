@@ -1,6 +1,6 @@
 export function DashboardSkeleton() {
   return (
-    <div className="w-full max-w-5xl aspect-video mt-8 rounded-xl border border-border bg-card shadow-2xl relative z-10 overflow-hidden flex flex-col">
+    <div className="w-full max-w-5xl mx-auto aspect-video mt-8 rounded-xl border border-border bg-card shadow-2xl relative z-10 overflow-hidden flex flex-col">
       {/* Top Bar Skeleton */}
       <div className="h-14 border-b border-border flex items-center px-4 justify-between bg-muted/30">
         <div className="flex items-center gap-4">
