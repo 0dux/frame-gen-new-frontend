@@ -3,8 +3,8 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { ModeToggle } from "./toggle-theme";
 import { Button } from "./ui/button";
-
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -51,7 +51,8 @@ export function Navbar() {
         </Link>
       </nav>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 md:gap-4">
+        <ModeToggle />
         <Button
           variant="ghost"
           className="text-muted-foreground hover:text-foreground"
