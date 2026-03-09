@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 export function DashboardSkeleton() {
   return (
     <motion.div
-      initial={{ scale: 1 }}
-      whileInView={{ scale: 1.1 }}
-      viewport={{ once: false, amount: 0.4 }}
+      initial={{ scale: 0.9, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      viewport={{ once: false, amount: 0.2 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="w-full max-w-5xl mx-auto aspect-video mt-8 rounded-xl border border-border bg-card shadow-2xl relative z-10 overflow-hidden flex flex-col origin-center will-change-transform"
     >

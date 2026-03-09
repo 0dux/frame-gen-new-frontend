@@ -9,6 +9,7 @@ export function CustomStylesAnimation() {
     <motion.div
       initial="idle"
       whileHover="hover"
+      whileTap="hover"
       className="h-56 bg-zinc-50 dark:bg-zinc-950 w-full flex items-center justify-center border-b border-border relative overflow-hidden group-hover:bg-zinc-100 dark:group-hover:bg-zinc-900 transition-colors duration-700 perspective-[1000px]"
     >
       {/* Dynamic Background that changes with the active style (Optimized with Opacity) */}

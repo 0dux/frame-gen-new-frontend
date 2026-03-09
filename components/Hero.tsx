@@ -1,6 +1,5 @@
 "use client";
 
-import { AuroraBackground } from "@/components/ui/aurora";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
@@ -67,10 +66,8 @@ export function Hero() {
         )}
       </div>
 
-      {/* Aurora Background (Light Mode Only) */}
-      <div className="absolute inset-0 w-full h-full -z-10 pointer-events-none opacity-50">
-        {!isDark && mounted && <AuroraBackground className="w-full h-full" />}
-      </div>
+      {/* Light Mode Background Layer (now just relies on default theme background) */}
+      <div className="absolute inset-0 w-full h-full -z-10 pointer-events-none opacity-50 bg-background" />
 
       <motion.div
         variants={containerVariants}

@@ -9,6 +9,7 @@ export function AiGenerationAnimation() {
     <motion.div
       initial="idle"
       whileHover="hover"
+      whileTap="hover"
       className="h-64 bg-background w-full flex items-center justify-center border-b border-border relative overflow-hidden group-hover:bg-accent/10 transition-colors duration-700"
     >
       {/* Background Grid */}
