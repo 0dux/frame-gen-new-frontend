@@ -77,9 +77,7 @@ export function Hero() {
               icon={SparklesIcon}
               className="w-4 h-4 text-primary"
             />
-            <span className="m">
-              First thumbnail generation is free for new users
-            </span>
+            <span className="m">Get your first thumbnail on us</span>
             <motion.span
               variants={{
                 initial: { x: 0 },
@@ -107,8 +105,8 @@ export function Hero() {
           variants={itemVariants}
           className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl"
         >
-          Frame Gen unites marketers, designers, and developers to create,
-          manage, and optimize impactful web experiences
+          Stop struggling with complex design tools. Frame Gen uses advanced AI
+          to generate irresistible, scroll-stopping thumbnails in seconds.
         </motion.p>
 
         <motion.div
@@ -128,7 +126,7 @@ export function Hero() {
               size="lg"
               className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 h-12 text-base w-full sm:w-auto gap-2"
             >
-              Start Building Now
+              Generate Your First Thumbnail
               <HugeiconsIcon icon={ArrowRight01Icon} className="w-4 h-4" />
             </Button>
           </motion.div>

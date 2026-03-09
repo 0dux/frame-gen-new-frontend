@@ -63,7 +63,7 @@ export function Features() {
           }}
           className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-foreground"
         >
-          Powerful features to supercharge your thumbnail creation
+          Everything you need. Zero design degree required.
         </motion.h2>
 
         <motion.p
@@ -73,8 +73,9 @@ export function Features() {
           }}
           className="text-lg text-muted-foreground"
         >
-          Everything you need to create custom, engaging thumbnails that drive
-          clicks and grow your audience effortlessly.
+          Powerful features designed to turn casual scrollers into loyal
+          viewers. Let the AI do the heavy lifting while you take all the
+          creative credit.
         </motion.p>
       </motion.div>
 
@@ -105,9 +106,9 @@ export function Features() {
                 AI-Powered Generation
               </CardTitle>
               <CardDescription className="text-muted-foreground text-base mt-2">
-                Powered by Nano Banana Pro, generate stunning, context-aware
-                thumbnails from simple text prompts in seconds. Add additional
-                prompts for fine-grained control.
+                Powered by Nano Banana Pro. Just type what you want, and watch
+                our AI turn your ideas into eye-popping thumbnails faster than
+                you can say &quot;click here.&quot;
               </CardDescription>
             </CardHeader>
           </Card>
@@ -137,12 +138,12 @@ export function Features() {
             </div>
             <CardHeader>
               <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors">
-                Custom Text Titles
+                Bold, Custom Text Titles
               </CardTitle>
               <CardDescription className="text-muted-foreground text-base mt-2">
-                Add striking and customized text titles directly onto your
-                generated thumbnails to maximize viewer engagement and deliver
-                your video&apos;s core message.
+                Drop the mic, and the text. Add striking, customizable titles
+                right onto your generated thumbnails so your audience knows
+                exactly what to expect.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -165,11 +166,12 @@ export function Features() {
             </div>
             <CardHeader>
               <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors">
-                Preset Color Schemes
+                Preset Color Palettes
               </CardTitle>
               <CardDescription className="text-muted-foreground text-base mt-2">
-                Choose from a variety of aesthetic preset color scheme themes to
-                match your brand identity and set the right mood.
+                Color outside the lines. Match your brand&apos;s exact vibe
+                effortlessly with our curated, high-converting preset color
+                themes.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -194,12 +196,12 @@ export function Features() {
             </div>
             <CardHeader>
               <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors">
-                Custom Thumbnail Styles
+                Custom Visual Styles
               </CardTitle>
               <CardDescription className="text-muted-foreground text-base mt-2">
-                Generate images in diverse styles like photorealistic, bold,
-                minimalist, and more to perfectly suit your video&apos;s unique
-                vibe.
+                From photorealistic masterpieces to pure neon flair. Choose a
+                generation style that perfectly matches your channel&apos;s
+                personality.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -225,8 +227,9 @@ export function Features() {
                 Community Inspiration
               </CardTitle>
               <CardDescription className="text-muted-foreground text-base mt-2">
-                Browse the community page to take inspiration from other
-                creators and discover effective prompts for your own assets.
+                Writer&apos;s block? Browse our community gallery to see
+                what&apos;s actually working and borrow top-tier prompts from
+                the best creators.
               </CardDescription>
             </CardHeader>
           </Card>
