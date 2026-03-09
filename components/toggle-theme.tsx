@@ -18,7 +18,11 @@ export function ModeToggle() {
   // Prevent layout shift/hydration mismatch
   if (!mounted) {
     return (
-      <Button variant="ghost" size="icon" className="relative w-9 h-9">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="relative w-9 h-9 rounded-full"
+      >
         <span className="sr-only">Toggle theme placeholder</span>
       </Button>
     );

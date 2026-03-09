@@ -29,12 +29,12 @@ export function CallToAction() {
         className="max-w-3xl flex flex-col items-center relative z-10 mb-16"
       >
         <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-foreground text-balance">
-          Step into the future of design
+          Start generating stunning thumbnails
         </h2>
 
         <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl text-balance">
-          Join thousands of designers and teams using Framer to turn ideas into
-          high-performing websites, fast.
+          Join thousands of creators using Frame Gen to turn ideas into
+          high-performing, click-magnet thumbnails, fast.
         </p>
 
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -42,7 +42,7 @@ export function CallToAction() {
             size="lg"
             className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 h-12 text-base relative overflow-hidden group"
           >
-            <span className="relative z-10">Start Building Now</span>
+            <span className="relative z-10">Start Generating Now</span>
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
           </Button>
         </motion.div>

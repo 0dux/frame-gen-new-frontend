@@ -1,8 +1,10 @@
 "use client";
 
-import { DashboardSkeleton } from "@/components/DashboardSkeleton";
+import { AuroraBackground } from "@/components/ui/aurora";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Button as MovingBorderButton } from "@/components/ui/moving-border";
+import { Particles } from "@/components/ui/particles";
 import {
   ArrowRight01Icon,
   PlayCircleIcon,
@@ -11,6 +13,8 @@ import {
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { motion, Variants } from "framer-motion";
+import { DashboardSkeleton } from "./DashboardSkeleton";
+import { ContainerTextFlip } from "./ui/container-text-flip";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -35,21 +39,24 @@ const itemVariants: Variants = {
 };
 
 export function Hero() {
+  const words = ["YouTube", "Instagram", "TikTok"];
   return (
     <main className="flex-1 flex flex-col items-center justify-center text-center px-6 pt-32 pb-24 relative overflow-hidden">
-      {/* Glow Effects Skeleton Placeholder */}
-      <motion.div
-        animate={{
-          scale: [1, 1.05, 1],
-          opacity: [0.5, 0.8, 0.5],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-32 bg-primary/20 blur-[100px] rounded-full point-events-none"
-      />
+      {/* Particles Background (Dark Mode Only) */}
+      <div className="absolute inset-0 w-full h-full -z-10 hidden dark:block pointer-events-none">
+        <Particles
+          className="absolute inset-0 w-full h-full"
+          quantity={150}
+          ease={80}
+          color="#ffffff"
+          refresh
+        />
+      </div>
+
+      {/* Aurora Background (Light Mode Only) */}
+      <div className="absolute inset-0 w-full h-full -z-10 dark:hidden pointer-events-none opacity-50">
+        <AuroraBackground className="w-full h-full" />
+      </div>
 
       <motion.div
         variants={containerVariants}
@@ -92,14 +99,15 @@ export function Hero() {
           variants={itemVariants}
           className="text-5xl md:text-7xl font-bold tracking-tight pb-1 mb-6 max-w-4xl bg-linear-to-b from-foreground to-muted-foreground bg-clip-text text-transparent"
         >
-          Your site should do more than look good
+          The Smart Way to Make Click-Magnet Thumbnails for your{" "}
+          <ContainerTextFlip words={words} /> videos
         </motion.h1>
 
         <motion.p
           variants={itemVariants}
           className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl"
         >
-          Craftify unites marketers, designers, and developers to create,
+          Frame Gen unites marketers, designers, and developers to create,
           manage, and optimize impactful web experiences
         </motion.p>
 
@@ -129,14 +137,15 @@ export function Hero() {
             whileTap={{ scale: 0.95 }}
             className="w-full sm:w-auto"
           >
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-border text-foreground hover:bg-accent hover:text-accent-foreground h-12 px-8 text-base w-full sm:w-auto bg-transparent gap-2"
+            <MovingBorderButton
+              borderRadius="1.75rem"
+              containerClassName="h-12 w-full sm:w-auto"
+              className="bg-transparent text-foreground border-border hover:bg-accent hover:text-accent-foreground px-8 text-base gap-2"
+              duration={3000}
             >
               Watch video
               <HugeiconsIcon icon={PlayCircleIcon} className="w-4 h-4" />
-            </Button>
+            </MovingBorderButton>
           </motion.div>
         </motion.div>
 

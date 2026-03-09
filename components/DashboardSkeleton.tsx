@@ -1,6 +1,16 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export function DashboardSkeleton() {
   return (
-    <div className="w-full max-w-5xl mx-auto aspect-video mt-8 rounded-xl border border-border bg-card shadow-2xl relative z-10 overflow-hidden flex flex-col">
+    <motion.div
+      initial={{ scale: 1 }}
+      whileInView={{ scale: 1.1 }}
+      viewport={{ once: false, amount: 0.4 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="w-full max-w-5xl mx-auto aspect-video mt-8 rounded-xl border border-border bg-card shadow-2xl relative z-10 overflow-hidden flex flex-col origin-center"
+    >
       {/* Top Bar Skeleton */}
       <div className="h-14 border-b border-border flex items-center px-4 justify-between bg-muted/30">
         <div className="flex items-center gap-4">
@@ -34,6 +44,6 @@ export function DashboardSkeleton() {
           <div className="w-full h-8 bg-accent rounded" />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -63,7 +63,7 @@ export function Features() {
           }}
           className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-foreground"
         >
-          Powerful features to simplify your web building experience
+          Powerful features to supercharge your thumbnail creation
         </motion.h2>
 
         <motion.p
@@ -73,8 +73,8 @@ export function Features() {
           }}
           className="text-lg text-muted-foreground"
         >
-          Craftify unites marketers, designers, and developers to create,
-          manage, and optimize impactful web experiences
+          Everything you need to create custom, engaging thumbnails that drive
+          clicks and grow your audience effortlessly.
         </motion.p>
       </motion.div>
 
@@ -102,12 +102,12 @@ export function Features() {
             </div>
             <CardHeader>
               <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors">
-                AI-Powered Design Assistance
+                AI-Powered Generation
               </CardTitle>
               <CardDescription className="text-muted-foreground text-base mt-2">
-                Get personalized design recommendations with AI-powered tools
-                that helping you create a polished, professional website
-                effortlessly.
+                Powered by Nano Banana Pro, generate stunning, context-aware
+                thumbnails from simple text prompts in seconds. Add additional
+                prompts for fine-grained control.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -137,12 +137,12 @@ export function Features() {
             </div>
             <CardHeader>
               <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors">
-                Customizable Templates
+                Custom Text Titles
               </CardTitle>
               <CardDescription className="text-muted-foreground text-base mt-2">
-                Choose from a wide range of professionally designed templates.
-                Easily customize fonts, colors, and layouts to reflect your
-                brand&apos;s.
+                Add striking and customized text titles directly onto your
+                generated thumbnails to maximize viewer engagement and deliver
+                your video&apos;s core message.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -165,10 +165,11 @@ export function Features() {
             </div>
             <CardHeader>
               <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors">
-                SEO Tools Built-In
+                Preset Color Schemes
               </CardTitle>
               <CardDescription className="text-muted-foreground text-base mt-2">
-                Boost your website's visibility with integrated SEO tools.
+                Choose from a variety of aesthetic preset color scheme themes to
+                match your brand identity and set the right mood.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -193,11 +194,12 @@ export function Features() {
             </div>
             <CardHeader>
               <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors">
-                APIs and integrations
+                Custom Thumbnail Styles
               </CardTitle>
               <CardDescription className="text-muted-foreground text-base mt-2">
-                easily connect with your favorite apps and services for a
-                website experience.
+                Generate images in diverse styles like photorealistic, bold,
+                minimalist, and more to perfectly suit your video&apos;s unique
+                vibe.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -220,10 +222,11 @@ export function Features() {
             </div>
             <CardHeader>
               <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors">
-                Responsive Design
+                Community Inspiration
               </CardTitle>
               <CardDescription className="text-muted-foreground text-base mt-2">
-                Create websites that look stunning on any device.
+                Browse the community page to take inspiration from other
+                creators and discover effective prompts for your own assets.
               </CardDescription>
             </CardHeader>
           </Card>
