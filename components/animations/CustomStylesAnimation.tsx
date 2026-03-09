@@ -23,7 +23,7 @@ export function CustomStylesAnimation() {
       />
 
       {/* Central Element being stylized */}
-      <div className="relative z-10 w-28 h-28 transform-style-3d group-hover:scale-105 transition-transform duration-500">
+      <div className="relative z-10 w-28 h-28 transform-3d group-hover:scale-105 transition-transform duration-500">
         <motion.div
           className="absolute inset-0 rounded-2xl flex items-center justify-center shadow-2xl backdrop-blur-md border border-white/20 dark:border-white/10"
           animate={{
