@@ -4,7 +4,11 @@ import { motion } from "framer-motion";
 
 export function CommunityInspirationAnimation() {
   return (
-    <div className="h-56 bg-zinc-50 dark:bg-zinc-950 w-full flex items-center justify-center border-b border-border relative overflow-hidden group-hover:bg-zinc-100 dark:group-hover:bg-zinc-900 transition-colors duration-700">
+    <motion.div
+      initial="idle"
+      whileHover="hover"
+      className="h-56 bg-zinc-50 dark:bg-zinc-950 w-full flex items-center justify-center border-b border-border relative overflow-hidden group-hover:bg-zinc-100 dark:group-hover:bg-zinc-900 transition-colors duration-700"
+    >
       {/* Fade Overlays for scrolling effect */}
       <div className="absolute left-0 top-0 bottom-0 w-16 bg-linear-to-r from-zinc-50 dark:from-zinc-950 to-transparent z-20 group-hover:from-zinc-100 dark:group-hover:from-zinc-900 transition-colors duration-700" />
       <div className="absolute right-0 top-0 bottom-0 w-16 bg-linear-to-l from-zinc-50 dark:from-zinc-950 to-transparent z-20 group-hover:from-zinc-100 dark:group-hover:from-zinc-900 transition-colors duration-700" />
@@ -14,11 +18,16 @@ export function CommunityInspirationAnimation() {
         {/* Row 1: Scrolling Left to Right */}
         <motion.div
           className="flex gap-4 px-4 will-change-transform"
-          animate={{ x: ["-50%", "0%"] }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
+          variants={{
+            idle: { x: "-25%" }, // set to middle so we see content when idle
+            hover: {
+              x: ["-50%", "0%"],
+              transition: {
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear",
+              },
+            },
           }}
         >
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
@@ -51,11 +60,16 @@ export function CommunityInspirationAnimation() {
         {/* Row 2: Scrolling Right to Left */}
         <motion.div
           className="flex gap-4 px-4 will-change-transform"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
+          variants={{
+            idle: { x: "-25%" }, // set to middle
+            hover: {
+              x: ["0%", "-50%"],
+              transition: {
+                duration: 25,
+                repeat: Infinity,
+                ease: "linear",
+              },
+            },
           }}
         >
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
@@ -85,6 +99,6 @@ export function CommunityInspirationAnimation() {
           ))}
         </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }

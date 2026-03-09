@@ -4,28 +4,52 @@ import { motion } from "framer-motion";
 
 export function ColorPalettesAnimation() {
   return (
-    <div className="h-56 bg-zinc-50 dark:bg-zinc-900 w-full flex items-center justify-center border-b border-border relative overflow-hidden group-hover:bg-zinc-100 dark:group-hover:bg-zinc-800 transition-colors duration-700 perspective-[1000px]">
+    <motion.div
+      initial="idle"
+      whileHover="hover"
+      className="h-56 bg-zinc-50 dark:bg-zinc-900 w-full flex items-center justify-center border-b border-border relative overflow-hidden group-hover:bg-zinc-100 dark:group-hover:bg-zinc-800 transition-colors duration-700 perspective-[1000px]"
+    >
       {/* Dynamic Theme Environment (Optimized using Opacity) */}
       <div className="absolute inset-0 opacity-20 dark:opacity-40">
         <motion.div
           className="absolute inset-0 bg-linear-to-tr from-[#f43f5e] to-[#f59e0b]"
-          animate={{ opacity: [1, 0, 0, 0, 1] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          variants={{
+            idle: { opacity: 0 },
+            hover: {
+              opacity: [1, 0, 0, 0, 1],
+              transition: { duration: 10, repeat: Infinity, ease: "linear" },
+            },
+          }}
         />
         <motion.div
           className="absolute inset-0 bg-linear-to-tr from-[#3b82f6] to-[#10b981]"
-          animate={{ opacity: [0, 1, 0, 0, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          variants={{
+            idle: { opacity: 0 },
+            hover: {
+              opacity: [0, 1, 0, 0, 0],
+              transition: { duration: 10, repeat: Infinity, ease: "linear" },
+            },
+          }}
         />
         <motion.div
           className="absolute inset-0 bg-linear-to-tr from-[#8b5cf6] to-[#ec4899]"
-          animate={{ opacity: [0, 0, 1, 0, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          variants={{
+            idle: { opacity: 0 },
+            hover: {
+              opacity: [0, 0, 1, 0, 0],
+              transition: { duration: 10, repeat: Infinity, ease: "linear" },
+            },
+          }}
         />
         <motion.div
           className="absolute inset-0 bg-linear-to-tr from-[#f43f5e] to-[#f59e0b]"
-          animate={{ opacity: [0, 0, 0, 1, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          variants={{
+            idle: { opacity: 0 },
+            hover: {
+              opacity: [0, 0, 0, 1, 0],
+              transition: { duration: 10, repeat: Infinity, ease: "linear" },
+            },
+          }}
         />
       </div>
       <div className="relative w-full h-full flex items-center justify-center transform-style-3d gap-4 z-10">
@@ -50,17 +74,19 @@ export function ColorPalettesAnimation() {
           <motion.div
             key={`plate-${i}`}
             className="w-16 h-28 rounded-2xl shadow-xl border border-black/5 dark:border-white/10 relative overflow-hidden"
-            initial={{ y: plate.yOffset }}
-            whileHover={{ scale: 1.1, y: -15 }}
-            animate={{
-              y: [plate.yOffset, plate.yOffset - 10, plate.yOffset],
-            }}
-            transition={{
-              y: {
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: Math.abs(plate.delay),
+            variants={{
+              idle: { y: plate.yOffset },
+              hover: {
+                y: [plate.yOffset, plate.yOffset - 10, plate.yOffset],
+                scale: 1.1,
+                transition: {
+                  y: {
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: Math.abs(plate.delay),
+                  },
+                },
               },
             }}
           >
@@ -82,11 +108,16 @@ export function ColorPalettesAnimation() {
                     key={idx}
                     className="absolute inset-0"
                     style={{ backgroundColor: color }}
-                    animate={{ opacity: opacityFrames }}
-                    transition={{
-                      duration: 10,
-                      repeat: Infinity,
-                      ease: "linear",
+                    variants={{
+                      idle: { opacity: idx === 0 ? 1 : 0 },
+                      hover: {
+                        opacity: opacityFrames,
+                        transition: {
+                          duration: 10,
+                          repeat: Infinity,
+                          ease: "linear",
+                        },
+                      },
                     }}
                   />
                 );
@@ -100,6 +131,6 @@ export function ColorPalettesAnimation() {
           </motion.div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }

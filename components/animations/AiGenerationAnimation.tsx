@@ -6,7 +6,11 @@ import { motion } from "framer-motion";
 
 export function AiGenerationAnimation() {
   return (
-    <div className="h-64 bg-background w-full flex items-center justify-center border-b border-border relative overflow-hidden group-hover:bg-accent/10 transition-colors duration-700">
+    <motion.div
+      initial="idle"
+      whileHover="hover"
+      className="h-64 bg-background w-full flex items-center justify-center border-b border-border relative overflow-hidden group-hover:bg-accent/10 transition-colors duration-700"
+    >
       {/* Background Grid */}
       <div
         className="absolute inset-0 opacity-40 group-hover:opacity-100 transition-opacity duration-700"
@@ -23,17 +27,19 @@ export function AiGenerationAnimation() {
           key={`text-${i}`}
           className="absolute p-2 bg-card border border-border shadow-sm rounded-md flex flex-col gap-1.5 w-16 z-0"
           style={{ top: `${25 + i * 20}%` }}
-          initial={{ x: "-500%", opacity: 0, scale: 0.8 }}
-          animate={{
-            x: "500%",
-            opacity: [0, 1, 1, 0],
-            scale: [0.8, 1, 1, 0.5],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            delay: i * 1,
-            ease: "easeInOut",
+          variants={{
+            idle: { x: "-500%", opacity: 0, scale: 0.8 },
+            hover: {
+              x: "500%",
+              opacity: [0, 1, 1, 0],
+              scale: [0.8, 1, 1, 0.5],
+              transition: {
+                duration: 6,
+                repeat: Infinity,
+                delay: i * 1,
+                ease: "easeInOut",
+              },
+            },
           }}
         >
           <div className="h-1.5 w-full bg-muted-foreground/40 rounded-full" />
@@ -48,17 +54,19 @@ export function AiGenerationAnimation() {
           key={`img-${i}`}
           className="absolute p-1 bg-background border border-border shadow-xl rounded-lg flex items-center justify-center z-0"
           style={{ top: `${25 + i * 20}%`, y: "-50%" }}
-          initial={{ x: "0%", opacity: 0, scale: 0.5 }}
-          animate={{
-            x: "500%",
-            opacity: [0, 1, 1, 0],
-            scale: [0.5, 1, 1, 0.8],
-          }}
-          transition={{
-            duration: 3.4,
-            repeat: Infinity,
-            delay: i * 1.2 + 0.8, // offset from text
-            ease: "easeInOut",
+          variants={{
+            idle: { x: "0%", opacity: 0, scale: 0.5 },
+            hover: {
+              x: "500%",
+              opacity: [0, 1, 1, 0],
+              scale: [0.5, 1, 1, 0.8],
+              transition: {
+                duration: 3.4,
+                repeat: Infinity,
+                delay: i * 1.2 + 0.8, // offset from text
+                ease: "easeInOut",
+              },
+            },
           }}
         >
           <div className="w-14 h-14 rounded-md bg-linear-to-tr from-indigo-500/20 to-purple-500/20 flex items-center justify-center border border-primary/20">
@@ -89,11 +97,17 @@ export function AiGenerationAnimation() {
         {/* Glowing Orbs behind the icon */}
         <motion.div
           className="absolute w-16 h-16 bg-primary/30 rounded-full blur-[20px]"
-          animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
+          variants={{
+            idle: { scale: 1, opacity: 0.5 },
+            hover: {
+              scale: [1, 1.5, 1],
+              opacity: [0.5, 1, 0.5],
+              transition: {
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              },
+            },
           }}
         />
 
@@ -105,11 +119,15 @@ export function AiGenerationAnimation() {
         {/* Animated scanning line (Optimized using y transform) */}
         <motion.div
           className="absolute left-0 right-0 h-0.5 bg-primary/60 blur-[1px]"
-          initial={{ top: "-10%" }}
-          animate={{ y: ["0%", "12000%", "0%"] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+          variants={{
+            idle: { top: "-10%", y: "0%" },
+            hover: {
+              y: ["0%", "12000%", "0%"],
+              transition: { duration: 3, repeat: Infinity, ease: "linear" },
+            },
+          }}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }

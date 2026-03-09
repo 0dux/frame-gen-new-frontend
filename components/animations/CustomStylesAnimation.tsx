@@ -6,28 +6,52 @@ import { motion } from "framer-motion";
 
 export function CustomStylesAnimation() {
   return (
-    <div className="h-56 bg-zinc-50 dark:bg-zinc-950 w-full flex items-center justify-center border-b border-border relative overflow-hidden group-hover:bg-zinc-100 dark:group-hover:bg-zinc-900 transition-colors duration-700 perspective-[1000px]">
+    <motion.div
+      initial="idle"
+      whileHover="hover"
+      className="h-56 bg-zinc-50 dark:bg-zinc-950 w-full flex items-center justify-center border-b border-border relative overflow-hidden group-hover:bg-zinc-100 dark:group-hover:bg-zinc-900 transition-colors duration-700 perspective-[1000px]"
+    >
       {/* Dynamic Background that changes with the active style (Optimized with Opacity) */}
       <div className="absolute inset-0 opacity-20 dark:opacity-30 blur-2xl">
         <motion.div
           className="absolute inset-0 bg-[#8b5cf6]"
-          animate={{ opacity: [1, 0, 0, 0, 1] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          variants={{
+            idle: { opacity: 0 },
+            hover: {
+              opacity: [1, 0, 0, 0, 1],
+              transition: { duration: 12, repeat: Infinity, ease: "linear" },
+            },
+          }}
         />
         <motion.div
           className="absolute inset-0 bg-[#ec4899]"
-          animate={{ opacity: [0, 1, 0, 0, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          variants={{
+            idle: { opacity: 0 },
+            hover: {
+              opacity: [0, 1, 0, 0, 0],
+              transition: { duration: 12, repeat: Infinity, ease: "linear" },
+            },
+          }}
         />
         <motion.div
           className="absolute inset-0 bg-[#3b82f6]"
-          animate={{ opacity: [0, 0, 1, 0, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          variants={{
+            idle: { opacity: 0 },
+            hover: {
+              opacity: [0, 0, 1, 0, 0],
+              transition: { duration: 12, repeat: Infinity, ease: "linear" },
+            },
+          }}
         />
         <motion.div
           className="absolute inset-0 bg-[#10b981]"
-          animate={{ opacity: [0, 0, 0, 1, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          variants={{
+            idle: { opacity: 0 },
+            hover: {
+              opacity: [0, 0, 0, 1, 0],
+              transition: { duration: 12, repeat: Infinity, ease: "linear" },
+            },
+          }}
         />
       </div>
 
@@ -35,36 +59,55 @@ export function CustomStylesAnimation() {
       <div className="relative z-10 w-28 h-28 transform-3d group-hover:scale-105 transition-transform duration-500">
         <motion.div
           className="absolute inset-0 rounded-2xl flex items-center justify-center shadow-2xl backdrop-blur-md border border-white/20 dark:border-white/10 overflow-hidden"
-          animate={{
-            rotateY: [0, 180, 360],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "linear",
+          variants={{
+            idle: { rotateY: 0 },
+            hover: {
+              rotateY: [0, 180, 360],
+              transition: { duration: 12, repeat: Infinity, ease: "linear" },
+            },
           }}
           style={{ transformOrigin: "center center" }}
         >
           {/* Optimized Background Color Shifts using Opacity */}
           <motion.div
             className="absolute inset-0 bg-violet-500/40"
-            animate={{ opacity: [1, 0, 0, 0, 1] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+            variants={{
+              idle: { opacity: 0 },
+              hover: {
+                opacity: [1, 0, 0, 0, 1],
+                transition: { duration: 12, repeat: Infinity, ease: "linear" },
+              },
+            }}
           />
           <motion.div
             className="absolute inset-0 bg-pink-500/40"
-            animate={{ opacity: [0, 1, 0, 0, 0] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+            variants={{
+              idle: { opacity: 0 },
+              hover: {
+                opacity: [0, 1, 0, 0, 0],
+                transition: { duration: 12, repeat: Infinity, ease: "linear" },
+              },
+            }}
           />
           <motion.div
             className="absolute inset-0 bg-blue-500/40"
-            animate={{ opacity: [0, 0, 1, 0, 0] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+            variants={{
+              idle: { opacity: 0 },
+              hover: {
+                opacity: [0, 0, 1, 0, 0],
+                transition: { duration: 12, repeat: Infinity, ease: "linear" },
+              },
+            }}
           />
           <motion.div
             className="absolute inset-0 bg-emerald-500/40"
-            animate={{ opacity: [0, 0, 0, 1, 0] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+            variants={{
+              idle: { opacity: 0 },
+              hover: {
+                opacity: [0, 0, 0, 1, 0],
+                transition: { duration: 12, repeat: Infinity, ease: "linear" },
+              },
+            }}
           />
           <HugeiconsIcon
             icon={SparklesIcon}
@@ -113,27 +156,32 @@ export function CustomStylesAnimation() {
             right: btn.right,
             bottom: btn.bottom,
           }}
-          initial={{ y: 0 }}
-          animate={{ y: [-5, 5, -5] }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            delay: btn.delay,
-            ease: "easeInOut",
+          variants={{
+            idle: { y: 0 },
+            hover: {
+              y: [-5, 5, -5],
+              transition: {
+                duration: 3,
+                repeat: Infinity,
+                delay: btn.delay,
+                ease: "easeInOut",
+              },
+            },
           }}
         >
           <motion.div
             className={`w-10 h-10 rounded-full ${btn.color} shadow-lg border-2 border-white dark:border-zinc-800 flex items-center justify-center cursor-pointer`}
             // Simulate a "click" press (Optimized scale only)
-            animate={{
-              scale: [1, 0.8, 1],
-            }}
-            transition={{
-              scale: {
-                duration: 0.4,
-                repeat: Infinity,
-                repeatDelay: 11.6,
-                delay: btn.clickTime,
+            variants={{
+              idle: { scale: 1 },
+              hover: {
+                scale: [1, 0.8, 1],
+                transition: {
+                  duration: 0.4,
+                  repeat: Infinity,
+                  repeatDelay: 11.6,
+                  delay: btn.clickTime,
+                },
               },
             }}
           >
@@ -143,12 +191,18 @@ export function CustomStylesAnimation() {
           {/* Ping effect when clicked */}
           <motion.div
             className={`absolute inset-0 rounded-full ${btn.color} -z-10`}
-            animate={{ scale: [1, 2], opacity: [0.8, 0] }}
-            transition={{
-              duration: 0.8,
-              repeat: Infinity,
-              repeatDelay: 11.2,
-              delay: btn.clickTime,
+            variants={{
+              idle: { scale: 1, opacity: 0 },
+              hover: {
+                scale: [1, 2],
+                opacity: [0.8, 0],
+                transition: {
+                  duration: 0.8,
+                  repeat: Infinity,
+                  repeatDelay: 11.2,
+                  delay: btn.clickTime,
+                },
+              },
             }}
           />
         </motion.div>
@@ -198,17 +252,22 @@ export function CustomStylesAnimation() {
             className={`${line.color} dark:opacity-80`}
             strokeWidth="2"
             strokeDasharray="4 4"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              repeatDelay: 10.5,
-              delay: line.clickTime,
+            variants={{
+              idle: { pathLength: 0, opacity: 0 },
+              hover: {
+                pathLength: [0, 1, 0],
+                opacity: [0, 1, 0],
+                transition: {
+                  duration: 1.5,
+                  repeat: Infinity,
+                  repeatDelay: 10.5,
+                  delay: line.clickTime,
+                },
+              },
             }}
           />
         ))}
       </svg>
-    </div>
+    </motion.div>
   );
 }
