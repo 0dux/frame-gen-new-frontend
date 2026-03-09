@@ -13,6 +13,8 @@ import {
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { motion, Variants } from "framer-motion";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { DashboardSkeleton } from "./DashboardSkeleton";
 import { ContainerTextFlip } from "./ui/container-text-flip";
 
@@ -40,22 +42,34 @@ const itemVariants: Variants = {
 
 export function Hero() {
   const words = ["YouTube", "Instagram", "TikTok"];
+  const { theme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentTheme = theme === "system" ? systemTheme : theme;
+  const isDark = mounted && currentTheme === "dark";
+
   return (
     <main className="flex-1 flex flex-col items-center justify-center text-center px-6 pt-32 pb-24 relative overflow-hidden">
       {/* Particles Background (Dark Mode Only) */}
-      <div className="absolute inset-0 w-full h-full -z-10 hidden dark:block pointer-events-none">
-        <Particles
-          className="absolute inset-0 w-full h-full"
-          quantity={150}
-          ease={80}
-          color="#ffffff"
-          refresh
-        />
+      <div className="absolute inset-0 w-full h-full -z-10 pointer-events-none">
+        {isDark && (
+          <Particles
+            className="absolute inset-0 w-full h-full"
+            quantity={150}
+            ease={80}
+            color="#ffffff"
+            refresh
+          />
+        )}
       </div>
 
       {/* Aurora Background (Light Mode Only) */}
-      <div className="absolute inset-0 w-full h-full -z-10 dark:hidden pointer-events-none opacity-50">
-        <AuroraBackground className="w-full h-full" />
+      <div className="absolute inset-0 w-full h-full -z-10 pointer-events-none opacity-50">
+        {!isDark && mounted && <AuroraBackground className="w-full h-full" />}
       </div>
 
       <motion.div
