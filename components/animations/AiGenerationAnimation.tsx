@@ -23,9 +23,9 @@ export function AiGenerationAnimation() {
           key={`text-${i}`}
           className="absolute p-2 bg-card border border-border shadow-sm rounded-md flex flex-col gap-1.5 w-16 z-0"
           style={{ top: `${25 + i * 20}%` }}
-          initial={{ left: "-20%", opacity: 0, scale: 0.8 }}
+          initial={{ x: "-500%", opacity: 0, scale: 0.8 }}
           animate={{
-            left: "50%",
+            x: "500%",
             opacity: [0, 1, 1, 0],
             scale: [0.8, 1, 1, 0.5],
           }}
@@ -48,9 +48,9 @@ export function AiGenerationAnimation() {
           key={`img-${i}`}
           className="absolute p-1 bg-background border border-border shadow-xl rounded-lg flex items-center justify-center z-0"
           style={{ top: `${25 + i * 20}%`, y: "-50%" }}
-          initial={{ left: "55%", opacity: 0, scale: 0.5 }}
+          initial={{ x: "0%", opacity: 0, scale: 0.5 }}
           animate={{
-            left: "110%",
+            x: "500%",
             opacity: [0, 1, 1, 0],
             scale: [0.5, 1, 1, 0.8],
           }}
@@ -102,10 +102,11 @@ export function AiGenerationAnimation() {
           className="w-10 h-10 text-primary relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]"
         />
 
-        {/* Animated scanning line */}
+        {/* Animated scanning line (Optimized using y transform) */}
         <motion.div
           className="absolute left-0 right-0 h-0.5 bg-primary/60 blur-[1px]"
-          animate={{ top: ["-10%", "110%", "-10%"] }}
+          initial={{ top: "-10%" }}
+          animate={{ y: ["0%", "12000%", "0%"] }}
           transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
         />
       </div>

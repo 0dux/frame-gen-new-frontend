@@ -13,7 +13,7 @@ export function CommunityInspirationAnimation() {
       <div className="relative w-[200%] h-full flex flex-col justify-center gap-4 group-hover:rotate-[-5deg] transition-transform duration-700">
         {/* Row 1: Scrolling Left to Right */}
         <motion.div
-          className="flex gap-4 px-4"
+          className="flex gap-4 px-4 will-change-transform"
           animate={{ x: ["-50%", "0%"] }}
           transition={{
             duration: 20,
@@ -50,7 +50,7 @@ export function CommunityInspirationAnimation() {
 
         {/* Row 2: Scrolling Right to Left */}
         <motion.div
-          className="flex gap-4 px-4"
+          className="flex gap-4 px-4 will-change-transform"
           animate={{ x: ["0%", "-50%"] }}
           transition={{
             duration: 25,

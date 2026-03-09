@@ -7,35 +7,36 @@ import { motion } from "framer-motion";
 export function CustomStylesAnimation() {
   return (
     <div className="h-56 bg-zinc-50 dark:bg-zinc-950 w-full flex items-center justify-center border-b border-border relative overflow-hidden group-hover:bg-zinc-100 dark:group-hover:bg-zinc-900 transition-colors duration-700 perspective-[1000px]">
-      {/* Dynamic Background that changes with the active style */}
-      <motion.div
-        className="absolute inset-0 opacity-20 dark:opacity-30 blur-2xl"
-        animate={{
-          backgroundColor: [
-            "#8b5cf6",
-            "#ec4899",
-            "#3b82f6",
-            "#10b981",
-            "#8b5cf6",
-          ],
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-      />
+      {/* Dynamic Background that changes with the active style (Optimized with Opacity) */}
+      <div className="absolute inset-0 opacity-20 dark:opacity-30 blur-2xl">
+        <motion.div
+          className="absolute inset-0 bg-[#8b5cf6]"
+          animate={{ opacity: [1, 0, 0, 0, 1] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute inset-0 bg-[#ec4899]"
+          animate={{ opacity: [0, 1, 0, 0, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute inset-0 bg-[#3b82f6]"
+          animate={{ opacity: [0, 0, 1, 0, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute inset-0 bg-[#10b981]"
+          animate={{ opacity: [0, 0, 0, 1, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+        />
+      </div>
 
       {/* Central Element being stylized */}
       <div className="relative z-10 w-28 h-28 transform-3d group-hover:scale-105 transition-transform duration-500">
         <motion.div
-          className="absolute inset-0 rounded-2xl flex items-center justify-center shadow-2xl backdrop-blur-md border border-white/20 dark:border-white/10"
+          className="absolute inset-0 rounded-2xl flex items-center justify-center shadow-2xl backdrop-blur-md border border-white/20 dark:border-white/10 overflow-hidden"
           animate={{
             rotateY: [0, 180, 360],
-            backgroundColor: [
-              "rgba(139, 92, 246, 0.4)", // Violet
-              "rgba(236, 72, 153, 0.4)", // Pink
-              "rgba(59, 130, 246, 0.4)", // Blue
-              "rgba(16, 185, 129, 0.4)", // Emerald
-              "rgba(139, 92, 246, 0.4)",
-            ],
-            borderRadius: ["16px", "32px", "16px"],
           }}
           transition={{
             duration: 12,
@@ -44,6 +45,27 @@ export function CustomStylesAnimation() {
           }}
           style={{ transformOrigin: "center center" }}
         >
+          {/* Optimized Background Color Shifts using Opacity */}
+          <motion.div
+            className="absolute inset-0 bg-violet-500/40"
+            animate={{ opacity: [1, 0, 0, 0, 1] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.div
+            className="absolute inset-0 bg-pink-500/40"
+            animate={{ opacity: [0, 1, 0, 0, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.div
+            className="absolute inset-0 bg-blue-500/40"
+            animate={{ opacity: [0, 0, 1, 0, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.div
+            className="absolute inset-0 bg-emerald-500/40"
+            animate={{ opacity: [0, 0, 0, 1, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          />
           <HugeiconsIcon
             icon={SparklesIcon}
             className="w-10 h-10 text-white drop-shadow-md"
@@ -102,23 +124,12 @@ export function CustomStylesAnimation() {
         >
           <motion.div
             className={`w-10 h-10 rounded-full ${btn.color} shadow-lg border-2 border-white dark:border-zinc-800 flex items-center justify-center cursor-pointer`}
-            // Simulate a "click" press
+            // Simulate a "click" press (Optimized scale only)
             animate={{
               scale: [1, 0.8, 1],
-              boxShadow: [
-                "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-                "0 0px 0px 0px rgba(0, 0, 0, 0)",
-                "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-              ],
             }}
             transition={{
               scale: {
-                duration: 0.4,
-                repeat: Infinity,
-                repeatDelay: 11.6,
-                delay: btn.clickTime,
-              },
-              boxShadow: {
                 duration: 0.4,
                 repeat: Infinity,
                 repeatDelay: 11.6,

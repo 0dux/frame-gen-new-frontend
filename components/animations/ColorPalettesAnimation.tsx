@@ -5,19 +5,29 @@ import { motion } from "framer-motion";
 export function ColorPalettesAnimation() {
   return (
     <div className="h-56 bg-zinc-50 dark:bg-zinc-900 w-full flex items-center justify-center border-b border-border relative overflow-hidden group-hover:bg-zinc-100 dark:group-hover:bg-zinc-800 transition-colors duration-700 perspective-[1000px]">
-      {/* Dynamic Theme Environment */}
-      <motion.div
-        className="absolute inset-0 opacity-20 dark:opacity-40"
-        animate={{
-          background: [
-            "linear-gradient(45deg, #f43f5e, #f59e0b)",
-            "linear-gradient(45deg, #3b82f6, #10b981)",
-            "linear-gradient(45deg, #8b5cf6, #ec4899)",
-            "linear-gradient(45deg, #f43f5e, #f59e0b)",
-          ],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-      />
+      {/* Dynamic Theme Environment (Optimized using Opacity) */}
+      <div className="absolute inset-0 opacity-20 dark:opacity-40">
+        <motion.div
+          className="absolute inset-0 bg-linear-to-tr from-[#f43f5e] to-[#f59e0b]"
+          animate={{ opacity: [1, 0, 0, 0, 1] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute inset-0 bg-linear-to-tr from-[#3b82f6] to-[#10b981]"
+          animate={{ opacity: [0, 1, 0, 0, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute inset-0 bg-linear-to-tr from-[#8b5cf6] to-[#ec4899]"
+          animate={{ opacity: [0, 0, 1, 0, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute inset-0 bg-linear-to-tr from-[#f43f5e] to-[#f59e0b]"
+          animate={{ opacity: [0, 0, 0, 1, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        />
+      </div>
       <div className="relative w-full h-full flex items-center justify-center transform-style-3d gap-4 z-10">
         {/* Floating Color Plates that shift colors */}
         {[
@@ -54,16 +64,34 @@ export function ColorPalettesAnimation() {
               },
             }}
           >
-            {/* The color block that transitions */}
-            <motion.div
-              className="absolute inset-0"
-              animate={{ backgroundColor: plate.colors }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            />
+            {/* The color block that transitions (Optimized block using opacity layers) */}
+            <div className="absolute inset-0">
+              {plate.colors.map((color, idx) => {
+                const isLast = idx === plate.colors.length - 1;
+                if (isLast) return null; // We only need 3 discrete transition stages for 4 items because the 4th is the same as 1st
+
+                const opacityFrames =
+                  idx === 0
+                    ? [1, 0, 0, 1]
+                    : idx === 1
+                      ? [0, 1, 0, 0]
+                      : [0, 0, 1, 0];
+
+                return (
+                  <motion.div
+                    key={idx}
+                    className="absolute inset-0"
+                    style={{ backgroundColor: color }}
+                    animate={{ opacity: opacityFrames }}
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  />
+                );
+              })}
+            </div>
             {/* Glass Overlay for sheen */}
             <div className="absolute inset-0 bg-linear-to-b from-white/60 to-transparent opacity-50 dark:from-white/40" />
             {/* Base structure at bottom */}
