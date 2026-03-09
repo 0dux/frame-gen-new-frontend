@@ -7,7 +7,7 @@ export function BoldTextAnimation() {
     <motion.div
       initial="idle"
       whileInView="hover"
-      viewport={{ once: false, margin: "-100px" }}
+      viewport={{ once: false, amount: 0.4 }}
       className="h-64 bg-zinc-50 dark:bg-zinc-950 w-full flex items-center justify-center border-b border-border relative overflow-hidden group-hover:bg-zinc-100 dark:group-hover:bg-zinc-900 transition-colors duration-700"
     >
       <div className="absolute inset-0 bg-linear-to-tl from-emerald-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />

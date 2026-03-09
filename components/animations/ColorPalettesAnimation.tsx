@@ -7,7 +7,7 @@ export function ColorPalettesAnimation() {
     <motion.div
       initial="idle"
       whileInView="hover"
-      viewport={{ once: false, margin: "-100px" }}
+      viewport={{ once: false, amount: 0.4 }}
       className="h-56 bg-zinc-50 dark:bg-zinc-900 w-full flex items-center justify-center border-b border-border relative overflow-hidden group-hover:bg-zinc-100 dark:group-hover:bg-zinc-800 transition-colors duration-700 perspective-[1000px]"
     >
       {/* Dynamic Theme Environment (Optimized using Opacity) */}

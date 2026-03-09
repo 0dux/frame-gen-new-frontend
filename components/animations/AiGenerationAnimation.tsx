@@ -9,7 +9,7 @@ export function AiGenerationAnimation() {
     <motion.div
       initial="idle"
       whileInView="hover"
-      viewport={{ once: false, margin: "-100px" }}
+      viewport={{ once: false, amount: 0.4 }}
       className="h-64 bg-background w-full flex items-center justify-center border-b border-border relative overflow-hidden group-hover:bg-accent/10 transition-colors duration-700"
     >
       {/* Background Grid */}
