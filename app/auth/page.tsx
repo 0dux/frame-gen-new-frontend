@@ -11,13 +11,20 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
+  AlertCircleIcon,
   ArrowRight01Icon,
+  Loading03Icon,
   LockIcon,
   Mail01Icon,
   UserIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { AnimatePresence, motion, type Variants } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  type Variants,
+} from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type ChangeEvent } from "react";
 import { useAuth } from "../context/auth-context";
@@ -43,6 +50,7 @@ const formVariants: Variants = {
 const AuthPage = () => {
   const { user, login, signUp } = useAuth();
   const router = useRouter();
+  const shouldReduceMotion = useReducedMotion();
   const [state, setState] = useState<"login" | "register">("login");
 
   const [formData, setFormData] = useState({
@@ -153,6 +161,20 @@ const AuthPage = () => {
               </div>
             </div>
 
+            <AnimatePresence mode="wait">
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0, y: -10 }}
+                  animate={{ opacity: 1, height: "auto", y: 0 }}
+                  exit={{ opacity: 0, height: 0, y: -10 }}
+                  className="bg-destructive/10 border border-destructive/20 rounded-xl p-4 flex items-center gap-3 text-destructive text-sm"
+                >
+                  <HugeiconsIcon icon={AlertCircleIcon} className="w-5 h-5 shrink-0" />
+                  <p className="font-medium tracking-tight">{error}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             <form onSubmit={handleSubmit} className="space-y-4">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -229,10 +251,23 @@ const AuthPage = () => {
 
               <Button
                 type="submit"
+                disabled={isLoading}
                 className="w-full h-11 text-base font-semibold transition-all hover:scale-[1.01] active:scale-95 bg-blue-600 hover:bg-blue-700 text-white gap-2"
               >
-                {state === "login" ? "Sign In" : "Create Account"}
-                <HugeiconsIcon icon={ArrowRight01Icon} className="h-4 w-4" />
+                {isLoading ? (
+                  <>
+                    <HugeiconsIcon
+                      icon={Loading03Icon}
+                      className="h-5 w-5 animate-spin"
+                    />
+                    {state === "login" ? "Signing In..." : "Creating Account..."}
+                  </>
+                ) : (
+                  <>
+                    {state === "login" ? "Sign In" : "Create Account"}
+                    <HugeiconsIcon icon={ArrowRight01Icon} className="h-4 w-4" />
+                  </>
+                )}
               </Button>
             </form>
 

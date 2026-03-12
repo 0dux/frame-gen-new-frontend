@@ -18,6 +18,7 @@ const YtPreviewContent = () => {
       <iframe
         srcDoc={new_html}
         className="h-full w-full border-none"
+        title="YouTube Preview"
         allowFullScreen
       ></iframe>
     </div>

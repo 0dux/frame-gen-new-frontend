@@ -11,7 +11,7 @@ import {
   Tick01Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { motion, Variants } from "framer-motion";
+import { motion, useReducedMotion, Variants } from "framer-motion";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -43,6 +43,7 @@ const itemVariants: Variants = {
 export function Hero() {
   const router = useRouter();
   const words = ["YouTube", "Instagram", "TikTok"];
+  const shouldReduceMotion = useReducedMotion();
   const { theme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
