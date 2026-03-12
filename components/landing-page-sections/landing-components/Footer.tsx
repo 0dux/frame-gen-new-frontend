@@ -1,7 +1,16 @@
+"use client";
+
 import { Github01Icon, Linkedin01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import GradientBg from "./GradientBg";
+
+const GradientBg = dynamic(() => import("./GradientBg"), {
+  ssr: false,
+  loading: () => (
+    <div className="absolute inset-0 bg-primary/5 animate-pulse" />
+  ),
+});
 
 export function Footer() {
   return (
