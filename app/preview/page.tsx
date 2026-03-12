@@ -15,7 +15,6 @@ const YtPreviewContent = () => {
 
   return (
     <div className="fixed inset-0 z-[100] bg-black">
-      {" "}
       <iframe
         srcDoc={new_html}
         className="h-full w-full border-none"

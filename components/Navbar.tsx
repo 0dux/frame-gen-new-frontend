@@ -73,8 +73,8 @@ export function Navbar() {
       >
         <div className="w-full max-w-7xl px-6 flex items-center justify-between">
           {/* Logo Section */}
-          <div
-            onClick={() => router.push("/")}
+          <Link
+            href={"/"}
             className="flex-1 flex items-center gap-2 hover:cursor-pointer active:scale-95 transition-transform"
           >
             <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
@@ -83,7 +83,7 @@ export function Navbar() {
             <span className="font-bold text-xl tracking-tight text-foreground whitespace-nowrap">
               Frame Gen
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex flex-1 items-center justify-center gap-8 text-sm font-medium">
@@ -118,7 +118,7 @@ export function Navbar() {
               <div className="flex items-center gap-3">
                 <Badge
                   variant="secondary"
-                  className="hidden sm:flex items-center gap-1 px-3 py-1 bg-primary/10 hover:bg-primary/20 text-primary border-none"
+                  className="hidden sm:flex items-center gap-2 px-3 py-1 bg-primary/10 hover:bg-primary/20 text-primary border-none"
                 >
                   <HugeiconsIcon icon={Coins01Icon} className="w-3 h-3" />
                   <span className="font-semibold">{credits}</span>
@@ -149,13 +149,19 @@ export function Navbar() {
                     <DropdownMenuSeparator />
                     <DropdownMenuItem asChild>
                       <Link href="/my-generation" className="cursor-pointer">
-                        <HugeiconsIcon icon={UserIcon} className="mr-2 h-4 w-4" />
+                        <HugeiconsIcon
+                          icon={UserIcon}
+                          className="mr-2 h-4 w-4"
+                        />
                         My Generations
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild className="sm:hidden">
                       <div className="flex items-center">
-                        <HugeiconsIcon icon={Coins01Icon} className="mr-2 h-4 w-4" />
+                        <HugeiconsIcon
+                          icon={Coins01Icon}
+                          className="mr-2 h-4 w-4"
+                        />
                         Credits: {credits}
                       </div>
                     </DropdownMenuItem>
@@ -164,7 +170,10 @@ export function Navbar() {
                       onClick={() => logout()}
                       className="text-destructive focus:text-destructive cursor-pointer"
                     >
-                      <HugeiconsIcon icon={Logout01Icon} className="mr-2 h-4 w-4" />
+                      <HugeiconsIcon
+                        icon={Logout01Icon}
+                        className="mr-2 h-4 w-4"
+                      />
                       Log out
                     </DropdownMenuItem>
                   </DropdownMenuContent>
