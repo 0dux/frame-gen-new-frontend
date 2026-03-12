@@ -2,11 +2,13 @@
 
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ModeToggle } from "./toggle-theme";
 import { Button } from "./ui/button";
 
 export function Navbar() {
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -28,7 +30,10 @@ export function Navbar() {
       )}
     >
       <div className="w-full max-w-7xl px-6 flex items-center justify-between">
-        <div className="flex-1 flex items-center gap-2">
+        <div
+          onClick={() => router.push("/")}
+          className="flex-1 flex items-center gap-2 hover:cursor-pointer active:scale-95 transition-transform"
+        >
           {/* Logo Placeholder */}
           <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
             <div className="w-4 h-4 bg-primary-foreground rounded-full opacity-50" />
@@ -48,10 +53,16 @@ export function Navbar() {
           >
             Generate
           </Link>
-          <Link href="#" className="hover:text-foreground transition-colors">
+          <Link
+            href="/about"
+            className="hover:text-foreground transition-colors"
+          >
             About
           </Link>
-          <Link href="#" className="hover:text-foreground transition-colors">
+          <Link
+            href="/community"
+            className="hover:text-foreground transition-colors"
+          >
             Community
           </Link>
         </nav>
@@ -59,12 +70,18 @@ export function Navbar() {
         <div className="flex-1 flex items-center justify-end gap-2 md:gap-4">
           <ModeToggle />
           <Button
+            onClick={() => router.push("/auth")}
             variant="ghost"
             className="text-muted-foreground hover:text-foreground hidden sm:flex"
           >
             Login
           </Button>
-          <Button className="px-6 whitespace-nowrap">Get started</Button>
+          <Button
+            onClick={() => router.push("/generate")}
+            className="px-6 whitespace-nowrap"
+          >
+            Get started
+          </Button>
         </div>
       </div>
     </header>
