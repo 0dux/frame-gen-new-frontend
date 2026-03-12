@@ -1,4 +1,10 @@
-import { AspectRatio, IThumbnail } from "@/app/assets/assets";
+import {
+  AspectRatio as AspectRatioType,
+  IThumbnail,
+} from "@/app/assets/assets";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Download, Image, Loader } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
@@ -9,19 +15,22 @@ const PreviewPanel = ({
 }: {
   thumbnail: IThumbnail | null;
   isLoading: boolean;
-  aspectRatio: AspectRatio;
+  aspectRatio: AspectRatioType;
 }) => {
-  const aspectClass = {
-    "16:9": "aspect-video",
-    "1:1": "aspect-square",
-    "9:16": "aspect-[9/16]",
-  } as Record<AspectRatio, string>;
+  const aspectValue = {
+    "16:9": 16 / 9,
+    "1:1": 1,
+    "9:16": 9 / 16,
+  }[aspectRatio];
 
   //Download function
   const onDownload = async () => {
     if (!thumbnail?.image_url) return;
     try {
       const response = await fetch(thumbnail.image_url);
+      if (!response.ok) {
+        throw new Error(`Download failed: ${response.status}`);
+      }
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -37,67 +46,65 @@ const PreviewPanel = ({
   };
 
   return (
-    <div className="relative mx-auto w-full max-w-2xl">
-      <div className={`relative overflow-hidden ${aspectClass[aspectRatio]}`}>
+    <Card className="relative overflow-hidden shadow-2xl">
+      <AspectRatio ratio={aspectValue}>
         {/* Loading State  */}
         {isLoading && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/24">
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 bg-background/80 backdrop-blur-sm">
             <HugeiconsIcon
               icon={Loader}
-              className="size-8 animate-spin text-zinc-400"
+              className="size-10 animate-spin text-blue-600 dark:text-blue-500"
             />
-            <div className="text-center">
-              <p className="text-sm font-medium text-zinc-200">
-                Thumbnail is being generated...
+            <div className="text-center px-6">
+              <p className="text-base font-semibold">
+                Crafting Your Masterpiece...
               </p>
-              <p className="mt-1 text-xs text-zinc-400">
-                This may take 10-20 seconds
+              <p className="mt-2 text-sm text-muted-foreground">
+                This usually takes about 10-20 seconds
               </p>
             </div>
           </div>
         )}
 
         {/* Thumbnail Generated Preview */}
-        {!isLoading && thumbnail?.image_url && (
+        {!isLoading && thumbnail?.image_url ? (
           <div className="group relative h-full w-full">
             <img
-              src={thumbnail?.image_url}
-              alt={thumbnail?.title}
-              className="w-full h-full object-cover"
+              src={thumbnail.image_url}
+              alt={thumbnail.title || "Generated thumbnail"}
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            <div className="absolute inset-0 flex items-end justify-center bg-black/10 opacity-0 transition-opacity group-hover:opacity-100">
-              <button
+            <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 transition-all duration-300 group-hover:opacity-100">
+              <Button
                 onClick={onDownload}
-                type={"button"}
-                className="mb-8 flex items-center gap-2 rounded-md px-5 py-2.5 text-xs font-medium transition bg-white/30 ring-2 ring-white/40 backdrop-blur hover:scale-105 active:scale-95"
+                size="lg"
+                className="gap-2 bg-white text-black hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-300 transition-all transform translate-y-4 group-hover:translate-y-0"
               >
-                <HugeiconsIcon icon={Download} className="size-4" />
-                Download Thumbnail
-              </button>
+                <HugeiconsIcon icon={Download} className="size-5" />
+                Download PNG
+              </Button>
             </div>
           </div>
-        )}
-        {/* Empty State */}
-        {!isLoading && !thumbnail?.image_url && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 rounded-lg border border-dashed border-white/20 bg-black/24 h-full">
-            <div className="max-sm:hidden flex size-20 items-center justify-center rounded-full bg-white/10">
+        ) : !isLoading ? (
+          /* Empty State */
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 px-4">
+            <div className="flex size-24 items-center justify-center rounded-full bg-blue-600/10 border border-blue-600/20 dark:bg-blue-500/10 dark:border-blue-500/20">
               <HugeiconsIcon
                 icon={Image}
-                className="size-10 opacity-50 text-white"
+                className="size-12 text-blue-600/60 dark:text-blue-500/60"
               />
             </div>
-            <div className="px-4 text-center">
-              <p className="text-sm text-zinc-200 font-medium">
-                Generate you first thumbnail
-              </p>
-              <p className="mt-1 text-xs text-zinc-400">
-                Fill out the form and click to generate
+            <div className="text-center space-y-2">
+              <h3 className="text-lg font-semibold">Your Preview Awaits</h3>
+              <p className="text-sm text-muted-foreground max-xs mx-auto leading-relaxed">
+                Configure your thumbnail style and title on the left, then click
+                Generate to see the magic.
               </p>
             </div>
           </div>
-        )}
-      </div>
-    </div>
+        ) : null}
+      </AspectRatio>
+    </Card>
   );
 };
 

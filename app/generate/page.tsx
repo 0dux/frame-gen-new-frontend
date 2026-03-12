@@ -1,9 +1,9 @@
 "use client";
 
-import { WandSparkles } from "@hugeicons/core-free-icons";
+import { Loader, WandSparkles } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useParams, usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import {
   colorSchemes,
@@ -17,6 +17,11 @@ import AspectRatioSelector from "./components/aspect-ratio-selector";
 import ColorSchemeSelector from "./components/color-scheme-selector";
 import PreviewPanel from "./components/preview-panel";
 import StyleSelector from "./components/style-selector";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 const Generate = () => {
   const { id } = useParams();
@@ -29,8 +34,6 @@ const Generate = () => {
 
   const [thumbnail, setThumbnail] = useState<IThumbnail | null>(null);
   const [loading, setLoading] = useState(false);
-
-  const [styleDropdownOpen, setStyleDropdownOpen] = useState(false);
 
   //thumbnail
   const [title, setTitle] = useState("");
@@ -83,7 +86,7 @@ const Generate = () => {
   };
 
   //fetch the thumbnail
-  const fetchThumbnail = async () => {
+  const fetchThumbnail = useCallback(async () => {
     try {
       const { data } = await api.get(`/api/v1/user/thumbnail/${id}`);
 
@@ -92,12 +95,13 @@ const Generate = () => {
       // console.log("Setting thumbnail data:", thumbnailData);
 
       setThumbnail(thumbnailData as IThumbnail);
-      setTitle(thumbnailData?.title);
-      setAspectRatios(thumbnailData?.aspect_ratio);
-      setStyle(thumbnailData?.style);
-      setColorSchemeId(thumbnailData?.color_scheme);
-      setAdditionalDetails(thumbnailData?.user_prompt);
-
+      setTitle(thumbnailData?.title ?? "");
+      setAspectRatios(thumbnailData?.aspect_ratio ?? "16:9");
+      setStyle(thumbnailData?.style ?? "Bold & Graphic");
+      setColorSchemeId(
+        thumbnailData?.color_scheme ?? colorSchemes[0]?.id ?? "",
+      );
+      setAdditionalDetails(thumbnailData?.user_prompt ?? "");
       // Only stop loading if we have the image
       if (thumbnailData?.image_url || !thumbnailData?.isGenerating) {
         setLoading(false);
@@ -110,7 +114,7 @@ const Generate = () => {
       );
       setLoading(false);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     if (isLoggedIn && id) {
@@ -141,114 +145,118 @@ const Generate = () => {
     }
   }, [id, isLoggedIn, loading, fetchAttempts, fetchThumbnail]);
 
-  //Whenever the pathname changes the thumbnail disappears
   useEffect(() => {
     if (!id && thumbnail) {
       setThumbnail(null);
     }
-  }, [pathname]);
+  }, [pathname, id, thumbnail]);
 
   return (
-    <>
-      <div className="pt-24 min-h-screen">
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-28 lg:pb-8 ">
-          <div className="grid lg:grid-cols-[400px_1fr] gap-8">
-            {/* left panel */}
-            <div className={`space-y-6 ${id && "pointer-events-none"}`}>
-              <div className="p-6 rounded-2xl bg-white/8 border border-white/12 shadow-xl space-y-6">
-                {/* Title and Description for card */}
-                <div>
-                  <h2 className="text-xl font-bold mb-1 text-zinc-100">
-                    Generate your thumbnail
-                  </h2>
-                  <p className="flex text-sm text-zinc-400">
-                    Describe your thumbnail and let our ai do the magic.
-                    <HugeiconsIcon icon={WandSparkles} className="h-4" />
-                  </p>
-                </div>
-
-                {/* Input field for generation*/}
-                <div className="space-y-5">
-                  <div className="space-y-2">
-                    <label className="block text-sm font-medium text-zinc-200">
-                      Title or Topic
-                    </label>
-                    <input
-                      type="text"
-                      value={title}
-                      onChange={(e) => setTitle(e.target.value)}
-                      maxLength={100}
-                      placeholder="e.g., how to learn to code faster"
-                      className="w-full px-4 py-3 rounded-lg border border-white/12 bg-black/20 text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                    <div className="flex justify-end">
-                      <span className="text-xs text-zinc-400">
-                        {title.length}/100
-                      </span>
-                    </div>
-                  </div>
-                  {/* Aspect ratio Selector */}
-                  <AspectRatioSelector
-                    value={aspectRatios}
-                    onChange={setAspectRatios}
+    <div className="pt-24 min-h-screen">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-28 lg:pb-8">
+        <div className="grid lg:grid-cols-[450px_1fr] gap-8 items-start">
+          {/* left panel */}
+          <Card className={`border shadow-lg bg-card/50 backdrop-blur-sm ${id && "pointer-events-none opacity-80"}`}>
+            <CardHeader className="pb-4">
+              <CardTitle className="text-2xl font-bold flex items-center gap-2">
+                Generate Thumbnail
+                <HugeiconsIcon icon={WandSparkles} className="h-5 w-5 text-blue-600 dark:text-blue-500" />
+              </CardTitle>
+              <CardDescription className="text-muted-foreground">
+                Describe your masterpiece and let AI bring it to life.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {/* Input field for generation*/}
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="title" className="font-medium">
+                    Title or Topic
+                  </Label>
+                  <Input
+                    id="title"
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    maxLength={100}
+                    placeholder="e.g., How to Learn to Code Faster"
+                    className="h-11 border-input bg-background/50 focus-visible:ring-blue-500/50"
                   />
-                  {/* Style Selector */}
-                  <StyleSelector
-                    value={style}
-                    onChange={setStyle}
-                    isOpen={styleDropdownOpen}
-                    setIsOpen={setStyleDropdownOpen}
-                  />
-                  {/* ColorScheme Selector */}
-                  <ColorSchemeSelector
-                    value={colorSchemeId}
-                    onChange={setColorSchemeId}
-                  />
-                  {/* Additional Details  */}
-                  <div className="space-y-2">
-                    <label className="block text-sm font-medium text-zinc-200">
-                      Additional Details{" "}
-                      <span className="text-zinc-400 text-xs">(optional)</span>
-                    </label>
-                    <textarea
-                      value={additionalDetails}
-                      onChange={(e) => setAdditionalDetails(e.target.value)}
-                      placeholder="Add any extra details you want to be present in the image"
-                      rows={3}
-                      className="w-full px-4 py-3 rounded-lg border border-white/12 bg-black/20 text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-                    ></textarea>
+                  <div className="flex justify-end">
+                    <span className="text-[10px] text-muted-foreground font-mono">
+                      {title.length}/100
+                    </span>
                   </div>
                 </div>
 
-                {/* Submit Button */}
-                {!id && (
-                  <button
-                    disabled={loading}
-                    onClick={handleGenerate}
-                    className="py-3.5 bg-blue-700 rounded-xl w-full text-sm bg-linear-to-b from-blue-500 to-blue-700 font-medium hover:from-blue-700 transition-colors disabled:cursor-not-allowed duration-200"
-                  >
-                    {loading ? "Generating ..." : "Generate"}
-                  </button>
-                )}
-              </div>
-            </div>
-            {/* right panel */}
-            <div>
-              <div className="p-6 rounded-2xl bg-white/8 border border-white/10 shadow-xl">
-                <h2 className="text-lg font-semibold text-zinc-100 mb-4">
-                  Preview
-                </h2>
-                <PreviewPanel
-                  thumbnail={thumbnail}
-                  isLoading={loading}
-                  aspectRatio={aspectRatios}
+                {/* Aspect ratio Selector */}
+                <AspectRatioSelector
+                  value={aspectRatios}
+                  onChange={setAspectRatios}
                 />
+
+                {/* Style Selector */}
+                <StyleSelector
+                  value={style}
+                  onChange={setStyle}
+                  isOpen={false}
+                  setIsOpen={() => {}}
+                />
+
+                {/* ColorScheme Selector */}
+                <ColorSchemeSelector
+                  value={colorSchemeId}
+                  onChange={setColorSchemeId}
+                />
+
+                {/* Additional Details  */}
+                <div className="space-y-2">
+                  <Label htmlFor="details" className="flex items-center gap-2 font-medium">
+                    Additional Details
+                    <span className="text-[10px] text-muted-foreground uppercase tracking-widest">(Optional)</span>
+                  </Label>
+                  <Textarea
+                    id="details"
+                    value={additionalDetails}
+                    onChange={(e) => setAdditionalDetails(e.target.value)}
+                    placeholder="Add extra objects, characters, or mood you want..."
+                    rows={4}
+                    className="bg-background/50 border-input focus-visible:ring-blue-500/50 resize-none leading-relaxed"
+                  />
+                </div>
               </div>
-            </div>
+
+              {/* Submit Button */}
+              {!id && (
+                <Button
+                  disabled={loading}
+                  onClick={handleGenerate}
+                  className="w-full h-12 text-base font-semibold bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-md hover:shadow-lg active:scale-[0.98]"
+                >
+                  {loading ? (
+                    <span className="flex items-center gap-2">
+                      <HugeiconsIcon icon={Loader} className="animate-spin h-4 w-4" />
+                      Generating...
+                    </span>
+                  ) : (
+                    "Generate Thumbnail"
+                  )}
+                </Button>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* right panel */}
+          <div className="lg:sticky lg:top-32 space-y-6">
+            <PreviewPanel
+              thumbnail={thumbnail}
+              isLoading={loading}
+              aspectRatio={aspectRatios}
+            />
           </div>
-        </main>
-      </div>
-    </>
+        </div>
+      </main>
+    </div>
   );
 };
 

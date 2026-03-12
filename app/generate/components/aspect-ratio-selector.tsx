@@ -1,4 +1,6 @@
 import { AspectRatio, aspectRatios } from "@/app/assets/assets";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 import {
   RectangleHorizontal,
   RectangleVertical,
@@ -14,33 +16,37 @@ const AspectRatioSelector = ({
   value: AspectRatio;
   onChange: (ratio: AspectRatio) => void;
 }) => {
-  const iconMap = {
-    "16:9": <HugeiconsIcon icon={RectangleHorizontal} className="size-6" />,
-    "1:1": <HugeiconsIcon icon={Square} className="size-6" />,
-    "9:16": <HugeiconsIcon icon={RectangleVertical} className="size-6" />,
-  } as Record<AspectRatio, React.ReactNode>;
+  const iconMap: Record<AspectRatio, React.ReactNode> = {
+    "16:9": <HugeiconsIcon icon={RectangleHorizontal} className="size-4" />,
+    "1:1": <HugeiconsIcon icon={Square} className="size-4" />,
+    "9:16": <HugeiconsIcon icon={RectangleVertical} className="size-4" />,
+  };
 
   return (
-    <div className="space-y-3 dark">
-      <label className="block text-sm font-medium text-zinc-200">
+    <div className="space-y-3">
+      <Label htmlFor="aspect-ratio">
         Aspect Ratio
-      </label>
-      <div className="flex flex-wrap gap-2 ">
+      </Label>
+      <div id="aspect-ratio" className="flex flex-wrap gap-2">
         {aspectRatios.map((ratio) => {
           const selected = value === ratio;
 
           return (
-            <button
-              className={`flex items-center gap-2 border border-white/10 px-5 py-2.5 rounded-md transition ${
-                selected ? "bg-white/12" : "hover:bg-white/8"
-              }`}
+            <Button
               key={ratio}
+              variant={selected ? "default" : "outline"}
+              size="sm"
+              className={`flex items-center gap-2 transition-all ${
+                selected 
+                  ? "bg-blue-600 hover:bg-blue-700 text-white shadow-sm ring-2 ring-blue-600/20" 
+                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+              }`}
               type="button"
               onClick={() => onChange(ratio)}
             >
               {iconMap[ratio]}
               <span className="tracking-widest">{ratio}</span>
-            </button>
+            </Button>
           );
         })}
       </div>
@@ -49,3 +55,4 @@ const AspectRatioSelector = ({
 };
 
 export default AspectRatioSelector;
+

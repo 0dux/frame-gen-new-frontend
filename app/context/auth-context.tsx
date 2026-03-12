@@ -81,8 +81,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       });
       if (data.user) {
         await updateAuthState(data.user as IUser);
+        toast.success(data.message);
       }
-      toast.success(data.message);
     } catch (error: any) {
       console.error(error);
       toast.error(
