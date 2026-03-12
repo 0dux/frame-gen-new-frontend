@@ -10,11 +10,11 @@ import {
 import { SparklesIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { motion, Variants } from "framer-motion";
-import { AiGenerationAnimation } from "../animations/AiGenerationAnimation";
-import { BoldTextAnimation } from "../animations/BoldTextAnimation";
-import { ColorPalettesAnimation } from "../animations/ColorPalettesAnimation";
-import { CommunityInspirationAnimation } from "../animations/CommunityInspirationAnimation";
-import { CustomStylesAnimation } from "../animations/CustomStylesAnimation";
+import { AiGenerationAnimation } from "../../components/animations/AiGenerationAnimation";
+import { BoldTextAnimation } from "../../components/animations/BoldTextAnimation";
+import { ColorPalettesAnimation } from "../../components/animations/ColorPalettesAnimation";
+import { CommunityInspirationAnimation } from "../../components/animations/CommunityInspirationAnimation";
+import { CustomStylesAnimation } from "../../components/animations/CustomStylesAnimation";
 
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 30 },

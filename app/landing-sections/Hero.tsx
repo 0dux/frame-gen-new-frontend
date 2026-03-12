@@ -14,8 +14,8 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { motion, Variants } from "framer-motion";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { ContainerTextFlip } from "../ui/container-text-flip";
-import { DashboardSkeleton } from "./landing-components/DashboardSkeleton";
+import { ContainerTextFlip } from "../../components/ui/container-text-flip";
+import { DashboardSkeleton } from "../landing-components/DashboardSkeleton";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },

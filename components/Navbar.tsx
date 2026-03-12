@@ -39,10 +39,13 @@ export function Navbar() {
         </div>
 
         <nav className="hidden md:flex flex-1 items-center justify-center gap-8 text-sm font-medium text-muted-foreground">
-          <Link href="#" className="hover:text-foreground transition-colors">
+          <Link href="/" className="hover:text-foreground transition-colors">
             Home
           </Link>
-          <Link href="#" className="hover:text-foreground transition-colors">
+          <Link
+            href="/generate"
+            className="hover:text-foreground transition-colors"
+          >
             Generate
           </Link>
           <Link href="#" className="hover:text-foreground transition-colors">

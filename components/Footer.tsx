@@ -5,12 +5,15 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
-const GradientBg = dynamic(() => import("./GradientBg"), {
-  ssr: false,
-  loading: () => (
-    <div className="absolute inset-0 bg-primary/5 animate-pulse" />
-  ),
-});
+const GradientBg = dynamic(
+  () => import("../app/landing-components/GradientBg"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="absolute inset-0 bg-primary/5 animate-pulse" />
+    ),
+  },
+);
 
 export function Footer() {
   return (

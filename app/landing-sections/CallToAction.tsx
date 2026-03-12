@@ -1,6 +1,6 @@
 "use client";
 
-import { DashboardSkeleton } from "@/components/landing-page-sections/landing-components/DashboardSkeleton";
+import { DashboardSkeleton } from "@/app/landing-components/DashboardSkeleton";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 

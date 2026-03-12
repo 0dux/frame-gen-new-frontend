@@ -1,10 +1,12 @@
-import { Footer } from "@/components/landing-page-sections/landing-components/Footer";
+import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { DiagonalGrid } from "@/components/ui/diagonal-grid";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Figtree, Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "react-hot-toast";
+import { AuthProvider } from "./context/auth-context";
 import "./globals.css";
 
 const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" });
@@ -44,11 +46,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* Diagonal Grid with Light Theme - global fixed background */}
-          <DiagonalGrid />
-          <Navbar />
-          {children}
-          <Footer />
+          <AuthProvider>
+            {/* Diagonal Grid with Light Theme - global fixed background */}
+            <DiagonalGrid />
+            <Toaster />
+            <Navbar />
+            {children}
+            <Footer />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
