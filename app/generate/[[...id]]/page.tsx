@@ -22,13 +22,13 @@ import {
   type AspectRatio,
   type IThumbnail,
   type ThumbnailStyle,
-} from "../assets/assets";
-import api from "../config/api";
-import { useAuth } from "../context/auth-context";
-import AspectRatioSelector from "./components/aspect-ratio-selector";
-import ColorSchemeSelector from "./components/color-scheme-selector";
-import PreviewPanel from "./components/preview-panel";
-import StyleSelector from "./components/style-selector";
+} from "../../assets/assets";
+import api from "../../config/api";
+import { useAuth } from "../../context/auth-context";
+import AspectRatioSelector from "../components/aspect-ratio-selector";
+import ColorSchemeSelector from "../components/color-scheme-selector";
+import PreviewPanel from "../components/preview-panel";
+import StyleSelector from "../components/style-selector";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -109,7 +109,8 @@ const iconVariants: Variants = {
 };
 
 const Generate = () => {
-  const { id } = useParams();
+  const params = useParams();
+  const id = Array.isArray(params.id) ? params.id[0] : params.id;
 
   const router = useRouter();
 

@@ -46,17 +46,19 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
+  // Reset mobile menu on route change without useEffect
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setIsMobileMenuOpen(false);
-  }, [pathname]);
+  }
 
   const navLinks = [
     { name: "Home", href: "/", icon: Home01Icon },
     { name: "Generate", href: "/generate", icon: RecordIcon },
     {
       name: isLoggedIn ? "My Generations" : "About",
-      href: isLoggedIn ? "/my-generation" : "/#features",
+      href: isLoggedIn ? "/my-generations" : "/#features",
       icon: UserIcon,
     },
     { name: "Community", href: "/community", icon: UserMultipleIcon },
@@ -102,7 +104,7 @@ export function Navbar() {
                 {link.name}
                 {pathname === link.href && (
                   <motion.div
-                    layoutId="navbar-active"
+                    layoutId={shouldReduceMotion ? undefined : "navbar-active"}
                     className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
@@ -149,7 +151,7 @@ export function Navbar() {
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem asChild>
-                      <Link href="/my-generation" className="cursor-pointer">
+                      <Link href="/my-generations" className="cursor-pointer">
                         <HugeiconsIcon
                           icon={UserIcon}
                           className="mr-2 h-4 w-4"
@@ -218,19 +220,19 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: "100%" }}
+            animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: "100%" }}
+            transition={shouldReduceMotion ? { duration: 0.1 } : { type: "spring", damping: 25, stiffness: 200 }}
             className="fixed inset-0 z-45 bg-background md:hidden pt-24 px-6"
           >
             <nav className="flex flex-col gap-4">
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.href}
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={shouldReduceMotion ? { duration: 0 } : { delay: index * 0.1 }}
                 >
                   <Link
                     href={link.href}
@@ -249,9 +251,9 @@ export function Navbar() {
 
               {!isLoggedIn && (
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
+                  transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.4 }}
                   className="mt-8 flex flex-col gap-3"
                 >
                   <Button

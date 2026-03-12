@@ -76,7 +76,7 @@ export function Hero() {
 
       <motion.div
         variants={containerVariants}
-        initial="hidden"
+        initial={shouldReduceMotion ? "visible" : "hidden"}
         animate="visible"
         className="flex flex-col items-center z-10 w-full"
       >
@@ -130,8 +130,8 @@ export function Hero() {
           className="flex flex-col sm:flex-row items-center gap-4 mb-12 w-full justify-center"
         >
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
+            whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
             transition={{
               type: "spring",
               duration: 0.3,
@@ -148,8 +148,8 @@ export function Hero() {
             </Button>
           </motion.div>
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
+            whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
             className="w-full sm:w-auto"
           >
             <MovingBorderButton
@@ -190,7 +190,9 @@ export function Hero() {
 
       {/* Dashboard UI Frame imported as a generic component */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={
+          shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
+        }
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.7 }}
         className="w-full relative z-10"

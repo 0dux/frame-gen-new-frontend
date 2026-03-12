@@ -5,8 +5,9 @@ import {
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Download, Image, Loader } from "@hugeicons/core-free-icons";
+import { Download, ImageIcon, Loader } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import Image from "next/image";
 
 const PreviewPanel = ({
   thumbnail,
@@ -69,10 +70,11 @@ const PreviewPanel = ({
         {/* Thumbnail Generated Preview */}
         {!isLoading && thumbnail?.image_url ? (
           <div className="group relative h-full w-full">
-            <img
+            <Image
               src={thumbnail.image_url}
               alt={thumbnail.title || "Generated thumbnail"}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 transition-all duration-300 group-hover:opacity-100">
               <Button
@@ -90,7 +92,7 @@ const PreviewPanel = ({
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 px-4">
             <div className="flex size-24 items-center justify-center rounded-full bg-blue-600/10 border border-blue-600/20 dark:bg-blue-500/10 dark:border-blue-500/20">
               <HugeiconsIcon
-                icon={Image}
+                icon={ImageIcon}
                 className="size-12 text-blue-600/60 dark:text-blue-500/60"
               />
             </div>

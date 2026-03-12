@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 import {
   AlertCircleIcon,
   ArrowRight01Icon,
@@ -77,6 +78,7 @@ const AuthPage = () => {
       } else {
         await signUp(formData);
       }
+      router.replace("/");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Authentication failed");
     } finally {
@@ -91,9 +93,10 @@ const AuthPage = () => {
     window.location.href = `${baseUrl}/api/v1/googleOAuth/login`;
   };
 
+  // Handle initial redirect for already-logged-in users
   useEffect(() => {
     if (user) {
-      router.push("/");
+      router.replace("/");
     }
   }, [user, router]);
 
@@ -105,7 +108,7 @@ const AuthPage = () => {
 
       <motion.div
         variants={containerVariants}
-        initial="hidden"
+        initial={shouldReduceMotion ? "visible" : "hidden"}
         animate="visible"
         className="w-full max-w-md z-10"
       >
@@ -164,12 +167,28 @@ const AuthPage = () => {
             <AnimatePresence mode="wait">
               {error && (
                 <motion.div
-                  initial={{ opacity: 0, height: 0, y: -10 }}
-                  animate={{ opacity: 1, height: "auto", y: 0 }}
-                  exit={{ opacity: 0, height: 0, y: -10 }}
+                  initial={
+                    shouldReduceMotion
+                      ? { opacity: 0 }
+                      : { opacity: 0, height: 0, y: -10 }
+                  }
+                  animate={
+                    shouldReduceMotion
+                      ? { opacity: 1 }
+                      : { opacity: 1, height: "auto", y: 0 }
+                  }
+                  exit={
+                    shouldReduceMotion
+                      ? { opacity: 0 }
+                      : { opacity: 0, height: 0, y: -10 }
+                  }
+                  transition={{ duration: shouldReduceMotion ? 0 : 0.2 }}
                   className="bg-destructive/10 border border-destructive/20 rounded-xl p-4 flex items-center gap-3 text-destructive text-sm"
                 >
-                  <HugeiconsIcon icon={AlertCircleIcon} className="w-5 h-5 shrink-0" />
+                  <HugeiconsIcon
+                    icon={AlertCircleIcon}
+                    className="w-5 h-5 shrink-0"
+                  />
                   <p className="font-medium tracking-tight">{error}</p>
                 </motion.div>
               )}
@@ -198,7 +217,10 @@ const AuthPage = () => {
                           id="name"
                           name="name"
                           placeholder="John Doe"
-                          className="pl-10 h-11 bg-background/50 transition-all focus:scale-[1.01]"
+                          className={cn(
+                            "pl-10 h-11 bg-background/50 transition-all",
+                            !shouldReduceMotion && "focus:scale-[1.01]",
+                          )}
                           value={formData.name}
                           onChange={handleChange}
                           required
@@ -219,7 +241,10 @@ const AuthPage = () => {
                         name="email"
                         type="email"
                         placeholder="name@example.com"
-                        className="pl-10 h-11 bg-background/50 transition-all focus:scale-[1.01]"
+                        className={cn(
+                          "pl-10 h-11 bg-background/50 transition-all",
+                          !shouldReduceMotion && "focus:scale-[1.01]",
+                        )}
                         value={formData.email}
                         onChange={handleChange}
                         required
@@ -239,7 +264,10 @@ const AuthPage = () => {
                         name="password"
                         type="password"
                         placeholder="••••••••"
-                        className="pl-10 h-11 bg-background/50 transition-all focus:scale-[1.01]"
+                        className={cn(
+                          "pl-10 h-11 bg-background/50 transition-all",
+                          !shouldReduceMotion && "focus:scale-[1.01]",
+                        )}
                         value={formData.password}
                         onChange={handleChange}
                         required
@@ -252,7 +280,10 @@ const AuthPage = () => {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-11 text-base font-semibold transition-all hover:scale-[1.01] active:scale-95 bg-blue-600 hover:bg-blue-700 text-white gap-2"
+                className={cn(
+                  "w-full h-11 text-base font-semibold transition-all bg-blue-600 hover:bg-blue-700 text-white gap-2",
+                  !shouldReduceMotion && "hover:scale-[1.01] active:scale-95",
+                )}
               >
                 {isLoading ? (
                   <>
@@ -260,12 +291,17 @@ const AuthPage = () => {
                       icon={Loading03Icon}
                       className="h-5 w-5 animate-spin"
                     />
-                    {state === "login" ? "Signing In..." : "Creating Account..."}
+                    {state === "login"
+                      ? "Signing In..."
+                      : "Creating Account..."}
                   </>
                 ) : (
                   <>
                     {state === "login" ? "Sign In" : "Create Account"}
-                    <HugeiconsIcon icon={ArrowRight01Icon} className="h-4 w-4" />
+                    <HugeiconsIcon
+                      icon={ArrowRight01Icon}
+                      className="h-4 w-4"
+                    />
                   </>
                 )}
               </Button>

@@ -41,7 +41,7 @@ export function Footer() {
           <div className="flex items-center gap-4">
             {/* Github Icon Button */}
             <Link
-              href="https://github.com/daksh-yadav"
+              href="https://github.com/0dux"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -52,7 +52,7 @@ export function Footer() {
 
             {/* LinkedIn Icon Button */}
             <Link
-              href="https://linkedin.com/in/daksh-yadav"
+              href="https://linkedin.com/in/dakshyadav0"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
