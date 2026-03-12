@@ -14,8 +14,8 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { motion, Variants } from "framer-motion";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { DashboardSkeleton } from "./DashboardSkeleton";
-import { ContainerTextFlip } from "./ui/container-text-flip";
+import { ContainerTextFlip } from "../ui/container-text-flip";
+import { DashboardSkeleton } from "./landing-components/DashboardSkeleton";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -106,9 +106,9 @@ export function Hero() {
 
         <motion.h1
           variants={itemVariants}
-          className="text-5xl md:text-7xl font-bold tracking-tight pb-1 mb-6 max-w-4xl bg-linear-to-b from-foreground to-muted-foreground bg-clip-text text-transparent"
+          className="text-5xl md:text-7xl font-bold tracking-tight pb-1 mb-6 max-w-3xl bg-linear-to-b from-foreground to-muted-foreground bg-clip-text text-transparent"
         >
-          The Smart Way to Make Click-Magnet Thumbnails for your{" "}
+          The Smart Way to Make Thumbnails for your{" "}
           <ContainerTextFlip words={words} /> videos
         </motion.h1>
 

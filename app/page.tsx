@@ -1,6 +1,6 @@
-import { CallToAction } from "@/components/CallToAction";
-import { Features } from "@/components/Features";
-import { Hero } from "@/components/Hero";
+import { CallToAction } from "@/components/landing-page-sections/CallToAction";
+import { Features } from "@/components/landing-page-sections/Features";
+import { Hero } from "@/components/landing-page-sections/Hero";
 
 export default function Home() {
   return (

@@ -1,4 +1,4 @@
-import { Footer } from "@/components/Footer";
+import { Footer } from "@/components/landing-page-sections/landing-components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { DiagonalGrid } from "@/components/ui/diagonal-grid";
 import { cn } from "@/lib/utils";
@@ -36,6 +36,7 @@ export default function RootLayout({
       className={cn("font-sans", figtree.variable)}
     >
       <body
+        cz-shortcut-listen="true"
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background text-foreground selection:bg-primary/30 flex flex-col`}
       >
         <ThemeProvider
