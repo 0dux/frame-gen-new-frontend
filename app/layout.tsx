@@ -36,7 +36,6 @@ export default function RootLayout({
       className={cn("font-sans", figtree.variable)}
     >
       <body
-        cz-shortcut-listen="true"
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background text-foreground selection:bg-primary/30 flex flex-col`}
       >
         <ThemeProvider

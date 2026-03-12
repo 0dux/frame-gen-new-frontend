@@ -88,7 +88,7 @@ export function Hero() {
               icon={SparklesIcon}
               className="w-4 h-4 text-primary"
             />
-            <span className="m">Get your first thumbnail on us</span>
+            <span>Get your first thumbnail on us</span>{" "}
             <motion.span
               variants={{
                 initial: { x: 0 },

@@ -7,20 +7,6 @@ import { motion } from "framer-motion";
 export function CallToAction() {
   return (
     <section className="w-full flex flex-col items-center justify-center text-center px-6 pt-32 pb-16 relative overflow-hidden">
-      {/* Background glow placeholder for CTA */}
-      <motion.div
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.3, 0.6, 0.3],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-48 bg-primary/20 blur-[120px] rounded-full point-events-none"
-      />
-
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
