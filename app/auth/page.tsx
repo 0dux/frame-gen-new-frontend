@@ -56,15 +56,25 @@ const AuthPage = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (state === "login") {
-      await login({ email: formData.email, password: formData.password });
-    } else {
-      await signUp(formData);
+    setError(null);
+    setIsLoading(true);
+    try {
+      if (state === "login") {
+        await login({ email: formData.email, password: formData.password });
+      } else {
+        await signUp(formData);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Authentication failed");
+    } finally {
+      setIsLoading(false);
     }
   };
-
   const googleLogin = () => {
     const isDev = process.env.NODE_ENV === "development";
     const baseUrl = isDev
@@ -156,7 +166,7 @@ const AuthPage = () => {
                 >
                   {state === "register" && (
                     <div className="space-y-2">
-                      <Label htmlFor="name">FullName</Label>
+                      <Label htmlFor="name">Full Name</Label>{" "}
                       <div className="relative group">
                         <HugeiconsIcon
                           icon={UserIcon}

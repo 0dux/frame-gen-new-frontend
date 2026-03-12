@@ -14,7 +14,8 @@ const YtPreviewContent = () => {
     .replace("%%TITLE%%", title);
 
   return (
-    <div className="fixed inset-0 z-100 bg-black">
+    <div className="fixed inset-0 z-[100] bg-black">
+      {" "}
       <iframe
         srcDoc={new_html}
         className="h-full w-full border-none"
@@ -26,7 +27,13 @@ const YtPreviewContent = () => {
 
 const YtPreview = () => {
   return (
-    <Suspense fallback={<div className="fixed inset-0 bg-black flex items-center justify-center text-white">Loading Preview...</div>}>
+    <Suspense
+      fallback={
+        <div className="fixed inset-0 bg-black flex items-center justify-center text-white">
+          Loading Preview...
+        </div>
+      }
+    >
       <YtPreviewContent />
     </Suspense>
   );
