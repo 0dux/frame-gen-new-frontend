@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export function CallToAction() {
   return (
-    <section className="w-full flex flex-col items-center justify-center text-center px-6 pt-32 pb-16 relative overflow-hidden">
+    <section className="w-full flex flex-col items-center justify-center text-center px-6 pt-20 pb-16 relative overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
