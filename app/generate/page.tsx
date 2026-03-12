@@ -248,8 +248,9 @@ const Generate = () => {
           {/* left panel */}
           <motion.div variants={leftPanelVariants}>
             <Card
-              className={`border shadow-lg bg-card/50 backdrop-blur-sm ${id && "pointer-events-none opacity-80"}`}
+              className={`border shadow-lg bg-card/50 backdrop-blur-sm ${id ? "pointer-events-none opacity-80" : ""}`}
             >
+              {" "}
               <CardHeader className="pb-4">
                 <CardTitle className="text-2xl font-bold flex items-center gap-2">
                   Generate Thumbnail

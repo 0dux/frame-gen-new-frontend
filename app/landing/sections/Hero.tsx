@@ -67,7 +67,9 @@ export function Hero() {
       </div>
 
       {/* Light Mode Background Layer (now just relies on default theme background) */}
-      <div className="absolute inset-0 w-full h-full -z-10 pointer-events-none opacity-50 bg-background" />
+      {!isDark && (
+        <div className="absolute inset-0 w-full h-full -z-10 pointer-events-none opacity-50 bg-background" />
+      )}
 
       <motion.div
         variants={containerVariants}
