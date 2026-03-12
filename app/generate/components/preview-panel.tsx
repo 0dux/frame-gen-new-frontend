@@ -96,10 +96,10 @@ const PreviewPanel = ({
             </div>
             <div className="text-center space-y-2">
               <h3 className="text-lg font-semibold">Your Preview Awaits</h3>
-              <p className="text-sm text-muted-foreground max-xs mx-auto leading-relaxed">
+              <p className="text-sm text-muted-foreground max-w-xs mx-auto leading-relaxed">
                 Configure your thumbnail style and title on the left, then click
                 Generate to see the magic.
-              </p>
+              </p>{" "}
             </div>
           </div>
         ) : null}

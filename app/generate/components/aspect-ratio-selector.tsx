@@ -24,10 +24,13 @@ const AspectRatioSelector = ({
 
   return (
     <div className="space-y-3">
-      <Label htmlFor="aspect-ratio">
-        Aspect Ratio
-      </Label>
-      <div id="aspect-ratio" className="flex flex-wrap gap-2">
+      <Label id="aspect-ratio-label">Aspect Ratio</Label>
+      <div
+        role="group"
+        aria-labelledby="aspect-ratio-label"
+        className="flex flex-wrap gap-2"
+      >
+        {" "}
         {aspectRatios.map((ratio) => {
           const selected = value === ratio;
 
@@ -37,8 +40,8 @@ const AspectRatioSelector = ({
               variant={selected ? "default" : "outline"}
               size="sm"
               className={`flex items-center gap-2 transition-all ${
-                selected 
-                  ? "bg-blue-600 hover:bg-blue-700 text-white shadow-sm ring-2 ring-blue-600/20" 
+                selected
+                  ? "bg-blue-600 hover:bg-blue-700 text-white shadow-sm ring-2 ring-blue-600/20"
                   : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
               }`}
               type="button"
@@ -55,4 +58,3 @@ const AspectRatioSelector = ({
 };
 
 export default AspectRatioSelector;
-

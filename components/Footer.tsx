@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 
 const GradientBg = dynamic(
-  () => import("../app/landing-components/GradientBg"),
+  () => import("../app/landing/components/GradientBg"),
   {
     ssr: false,
     loading: () => (
