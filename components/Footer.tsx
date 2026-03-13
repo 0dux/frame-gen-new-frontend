@@ -3,6 +3,7 @@
 import { Github01Icon, Linkedin01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
+import { FlickeringGrid } from "./ui/flickering-grid";
 
 export function Footer() {
   return (
@@ -10,11 +11,13 @@ export function Footer() {
       {/* Outer rounded card area */}
       <div className="bg-card border border-border rounded-[1rem] p-8 md:p-12 flex flex-col relative overflow-hidden min-h-[50vh]">
         {/* Animated Gradient Background */}
-        {/* <div className="absolute inset-0 z-0 pointer-events-none"></div> */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <FlickeringGrid />
+        </div>
 
         {/* Main Content Center */}
         <div className="z-10 relative flex-1 flex items-center justify-center w-full my-12">
-          <h2 className="text-[16vw] xl:text-[232px] font-bold tracking-normal text-white dark:text-foreground/90 select-none text-center leading-none whitespace-nowrap">
+          <h2 className="text-[16vw] xl:text-[232px] font-bold tracking-normal text-foreground/90 select-none text-center leading-none whitespace-nowrap">
             Frame Gen
           </h2>
         </div>
