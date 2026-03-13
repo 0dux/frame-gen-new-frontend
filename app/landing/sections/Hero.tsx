@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
@@ -93,7 +94,9 @@ export function Hero() {
               icon={SparklesIcon}
               className="w-4 h-4 text-primary"
             />
-            <span>Get your first thumbnail on us</span>{" "}
+            <AnimatedGradientText speed={2}>
+              Get your first thumbnail on us
+            </AnimatedGradientText>
             <motion.span
               variants={{
                 initial: { x: 0 },
@@ -108,7 +111,6 @@ export function Hero() {
             </motion.span>
           </Badge>
         </motion.div>
-
         <motion.h1
           variants={itemVariants}
           className="text-5xl md:text-7xl font-bold tracking-tight pb-1 mb-6 max-w-3xl bg-linear-to-b from-foreground to-muted-foreground bg-clip-text text-transparent"
@@ -116,7 +118,6 @@ export function Hero() {
           The Smart Way to Make Thumbnails for your{" "}
           <ContainerTextFlip words={words} /> videos
         </motion.h1>
-
         <motion.p
           variants={itemVariants}
           className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl"
@@ -124,7 +125,6 @@ export function Hero() {
           Stop struggling with complex design tools. Frame Gen uses advanced AI
           to generate irresistible, scroll-stopping thumbnails in seconds.
         </motion.p>
-
         <motion.div
           variants={itemVariants}
           className="flex flex-col sm:flex-row items-center gap-4 mb-12 w-full justify-center"
@@ -163,7 +163,6 @@ export function Hero() {
             </MovingBorderButton>
           </motion.div>
         </motion.div>
-
         {/* Feature Checkmarks below buttons */}
         <motion.div
           variants={itemVariants}

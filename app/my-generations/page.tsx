@@ -109,7 +109,7 @@ const MyGeneration = () => {
       console.error(error);
       toast.error(
         error?.response?.data?.message ||
-          "Some error has occured during fetching thumbnails",
+          "Some error has occurred during deleting thumbnail",
       );
     }
   };

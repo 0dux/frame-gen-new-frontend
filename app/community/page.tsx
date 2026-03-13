@@ -35,7 +35,7 @@ const Community = () => {
       console.error(error);
       toast.error(
         error?.response?.data?.message ||
-          "Some error has occured during fetching thumbnails",
+          "Some error has occurred while fetching thumbnails",
       );
     } finally {
       setLoading(false);
@@ -98,8 +98,8 @@ const Community = () => {
             No Thumbnails Yet
           </h3>
           <p className="text-base text-muted-foreground mt-2">
-            No one has published any thumbnails yet be the first one to publish
-            your thumbnail for others to see.
+            No one has published any thumbnails yet. Be the first one to publish
+            your thumbnail for others to see!
           </p>
         </div>
       )}

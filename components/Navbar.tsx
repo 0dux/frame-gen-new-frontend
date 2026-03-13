@@ -27,7 +27,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ModeToggle } from "./toggle-theme";
+import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
 
 export function Navbar() {
   const router = useRouter();
@@ -115,7 +115,7 @@ export function Navbar() {
 
           {/* Auth & Actions */}
           <div className="flex-1 flex items-center justify-end gap-2 md:gap-4">
-            <ModeToggle />
+            <AnimatedThemeToggler />
 
             {isLoggedIn ? (
               <div className="flex items-center gap-3">
