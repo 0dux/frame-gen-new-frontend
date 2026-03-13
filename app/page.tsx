@@ -1,6 +1,7 @@
 import { CallToAction } from "@/app/landing/sections/CallToAction";
 import { Features } from "@/app/landing/sections/Features";
 import { Hero } from "@/app/landing/sections/Hero";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <Features />
       <CallToAction />
+      <Footer />
     </div>
   );
 }

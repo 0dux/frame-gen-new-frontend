@@ -1,4 +1,3 @@
-import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { DiagonalGrid } from "@/components/ui/diagonal-grid";
 import { cn } from "@/lib/utils";
@@ -52,7 +51,6 @@ export default function RootLayout({
             <Toaster />
             <Navbar />
             {children}
-            <Footer />
           </AuthProvider>
         </ThemeProvider>
       </body>

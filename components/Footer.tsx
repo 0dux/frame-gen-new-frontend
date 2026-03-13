@@ -1,5 +1,4 @@
 "use client";
-import { Warp } from "@paper-design/shaders-react";
 
 import { Github01Icon, Linkedin01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -11,21 +10,7 @@ export function Footer() {
       {/* Outer rounded card area */}
       <div className="bg-card border border-border rounded-[1rem] p-8 md:p-12 flex flex-col relative overflow-hidden min-h-[50vh]">
         {/* Animated Gradient Background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <Warp
-            width={1280}
-            height={720}
-            colors={["#121212", "#9470ff", "#121212", "#8838ff"]}
-            proportion={0.45}
-            softness={1}
-            distortion={0.25}
-            swirl={0.8}
-            swirlIterations={10}
-            shape="checks"
-            shapeScale={0.1}
-            speed={1}
-          />
-        </div>
+        {/* <div className="absolute inset-0 z-0 pointer-events-none"></div> */}
 
         {/* Main Content Center */}
         <div className="z-10 relative flex-1 flex items-center justify-center w-full my-12">
