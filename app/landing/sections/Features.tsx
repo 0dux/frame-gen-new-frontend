@@ -27,7 +27,7 @@ const cardVariants: Variants = {
 
 export function Features() {
   return (
-    <section className="w-full max-w-7xl mx-auto px-6 py-24 flex flex-col items-center">
+    <section id="features" className="w-full max-w-7xl mx-auto px-6 py-24 flex flex-col items-center scroll-mt-24">
       {/* Section Header */}
       <motion.div
         initial="hidden"

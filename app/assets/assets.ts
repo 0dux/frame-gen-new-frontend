@@ -1,3 +1,23 @@
+import thumb1 from "@/public/thumbnails/bvy8qymkito4nloas1cc.jpg";
+import thumb2 from "@/public/thumbnails/fsa3ponltp1ffzetiipd.jpg";
+import thumb3 from "@/public/thumbnails/jcwmtodoiurqg6liib7k.jpg";
+import thumb4 from "@/public/thumbnails/ojcvqiotq7mqo9rxgjbq.jpg";
+import thumb5 from "@/public/thumbnails/p3mfavn14mkroe7hthgf.jpg";
+import thumb6 from "@/public/thumbnails/vjdmwacbfw2sfgeymset.jpg";
+import thumb7 from "@/public/thumbnails/vzmxevb15vbqzzjc3j4b.jpg";
+import thumb8 from "@/public/thumbnails/ypysnwt9zm3lmzcktxt5.jpg";
+
+export const marqueeThumbnails = [
+  thumb1,
+  thumb2,
+  thumb3,
+  thumb4,
+  thumb5,
+  thumb6,
+  thumb7,
+  thumb8,
+];
+
 export const aspectRatios = ["16:9", "1:1", "9:16"] as const;
 export type AspectRatio = (typeof aspectRatios)[number];
 export const thumbnailStyles = [

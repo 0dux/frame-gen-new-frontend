@@ -3,6 +3,7 @@
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Marquee } from "@/components/ui/marquee";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { Particles } from "@/components/ui/particles";
 import {
@@ -14,10 +15,11 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react";
 import { motion, useReducedMotion, Variants } from "framer-motion";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ContainerTextFlip } from "../../../components/ui/container-text-flip";
-import { DashboardSkeleton } from "../components/DashboardSkeleton";
+import { marqueeThumbnails } from "@/app/assets/assets";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -54,6 +56,13 @@ export function Hero() {
 
   const currentTheme = theme === "system" ? systemTheme : theme;
   const isDark = mounted && currentTheme === "dark";
+
+  const scrollToVideo = () => {
+    const videoElement = document.getElementById("cta-video");
+    if (videoElement) {
+      videoElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <main className="flex-1 flex flex-col items-center justify-center text-center px-6 pt-32 pb-24 relative overflow-hidden">
@@ -153,6 +162,7 @@ export function Hero() {
             className="w-full sm:w-auto"
           >
             <MovingBorderButton
+              onClick={scrollToVideo}
               borderRadius="1.75rem"
               containerClassName="h-12 w-full sm:w-auto"
               className="bg-transparent text-foreground border-border hover:bg-accent hover:text-accent-foreground px-8 text-base gap-2"
@@ -187,7 +197,7 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Dashboard UI Frame imported as a generic component */}
+      {/* Full-width, borderless marquee */}
       <motion.div
         initial={
           shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
@@ -196,7 +206,29 @@ export function Hero() {
         transition={{ delay: 0.6, duration: 0.7 }}
         className="w-full relative z-10"
       >
-        <DashboardSkeleton />
+        <div className="relative flex h-80 md:h-96 w-full flex-col items-center justify-center overflow-hidden bg-background">
+          <Marquee pauseOnHover className="[--duration:30s]">
+            {marqueeThumbnails.map((src, idx) => (
+              <div
+                key={idx}
+                className="group/item relative h-56 md:h-72 w-80 md:w-112.5 overflow-hidden rounded-xl border border-border bg-muted/20"
+              >
+                <Image
+                  src={src}
+                  alt={`Thumbnail ${idx}`}
+                  fill
+                  priority={idx < 3}
+                  className="object-cover transition-transform duration-300 group-hover/item:scale-105"
+                  sizes="(max-width: 768px) 320px, 450px"
+                />
+              </div>
+            ))}
+          </Marquee>
+
+          {/* Gradient Overlays for smooth entry/exit */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r from-background"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l from-background"></div>
+        </div>
       </motion.div>
     </main>
   );
