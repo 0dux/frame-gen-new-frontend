@@ -66,12 +66,13 @@ export function Navbar() {
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
+    href: string,
   ) => {
     if (href.startsWith("/#") && pathname === "/") {
       e.preventDefault();
       const id = href.replace("/#", "");
       const element = document.getElementById(id);
+      setIsMobileMenuOpen(false);
       if (element) {
         const offset = 80; // Adjust for sticky header
         const bodyRect = document.body.getBoundingClientRect().top;
@@ -81,13 +82,11 @@ export function Navbar() {
 
         window.scrollTo({
           top: offsetPosition,
-          behavior: "smooth",
+          behavior: shouldReduceMotion ? "auto" : "smooth",
         });
-        setIsMobileMenuOpen(false);
       }
     }
   };
-
   return (
     <>
       <header
